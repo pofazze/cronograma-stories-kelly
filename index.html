@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cronograma de Stories — Kelly Lemos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C5A265;
+  --gold-light: #D4B87A;
+  --dark: #1A1A1A;
+  --cream: #FAF7F2;
+  --warm-gray: #8A7E74;
+  --soft-pink: #F0E6DE;
+  --deep-wine: #6B2D3E;
+  --white: #FFFFFF;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, #2D2420 50%, var(--dark) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 60px 24px 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(197,162,101,0.15) 0%, transparent 70%);
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  color: var(--gold);
+}
+
+.hero .subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero .desc {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.6);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.strategy-bar {
+  background: var(--gold);
+  color: var(--dark);
+  text-align: center;
+  padding: 16px 24px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+  color: var(--dark);
+}
+
+.section-sub {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--warm-gray);
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--warm-gray);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-dot.aquecimento { background: #E8D5C0; }
+.legend-dot.autoridade { background: var(--gold); }
+.legend-dot.cta { background: var(--deep-wine); }
+.legend-dot.conexao { background: #B8A89A; }
+.legend-dot.bastidor { background: #D4C4B0; }
+
+/* Calendar Grid */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 900px) {
+  .calendar { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 500px) {
+  .calendar { grid-template-columns: 1fr; }
+}
+
+.day-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.day-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+}
+
+.day-header {
+  padding: 14px 16px 10px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.day-header.seg { background: #E8D5C0; color: var(--dark); }
+.day-header.ter { background: var(--gold); color: var(--white); }
+.day-header.qua { background: #D4C4B0; color: var(--dark); }
+.day-header.qui { background: var(--deep-wine); color: var(--white); }
+.day-header.sex { background: var(--gold); color: var(--white); }
+.day-header.sab { background: #B8A89A; color: var(--white); }
+.day-header.dom { background: var(--deep-wine); color: var(--white); }
+
+.day-body {
+  padding: 16px;
+}
+
+.day-theme {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--dark);
+}
+
+.day-tipo {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  color: var(--warm-gray);
+}
+
+.story-block {
+  background: var(--cream);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.story-block:last-child { margin-bottom: 0; }
+
+.story-num {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.story-text {
+  font-size: 0.82rem;
+  color: var(--dark);
+  line-height: 1.5;
+}
+
+.story-text em {
+  font-style: italic;
+  color: var(--warm-gray);
+}
+
+.story-text strong {
+  color: var(--deep-wine);
+  font-weight: 600;
+}
+
+.cta-badge {
+  display: inline-block;
+  background: var(--deep-wine);
+  color: var(--white);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.cta-badge.gold {
+  background: var(--gold);
+  color: var(--dark);
+}
+
+/* Sequence Detail */
+.sequence-section {
+  margin-bottom: 48px;
+}
+
+.day-detail {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+.day-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.day-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.day-badge.seg { background: #E8D5C0; color: var(--dark); }
+.day-badge.ter { background: var(--gold); color: var(--white); }
+.day-badge.qua { background: #D4C4B0; color: var(--dark); }
+.day-badge.qui { background: var(--deep-wine); color: var(--white); }
+.day-badge.sex { background: var(--gold); color: var(--white); }
+.day-badge.sab { background: #B8A89A; color: var(--white); }
+.day-badge.dom { background: var(--deep-wine); color: var(--white); }
+
+.day-detail-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.day-detail-subtitle {
+  font-size: 0.78rem;
+  color: var(--warm-gray);
+  font-weight: 300;
+}
+
+.stories-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.story-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  background: var(--cream);
+  border-radius: 12px;
+  align-items: flex-start;
+}
+
+.story-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  background: var(--white);
+  color: var(--dark);
+  border: 2px solid var(--gold);
+}
+
+.story-content { flex: 1; }
+
+.story-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 3px;
+}
+
+.story-desc {
+  font-size: 0.85rem;
+  color: var(--dark);
+  line-height: 1.55;
+}
+
+.story-desc .copy {
+  display: block;
+  margin-top: 6px;
+  padding: 8px 12px;
+  background: var(--white);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: #555;
+}
+
+.story-desc .copy-cta {
+  display: block;
+  margin-top: 6px;
+  padding: 8px 12px;
+  background: var(--deep-wine);
+  color: var(--white);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.story-format {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.68rem;
+  color: var(--warm-gray);
+  background: var(--white);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Tips Section */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+
+@media (max-width: 700px) {
+  .tips-grid { grid-template-columns: 1fr; }
+}
+
+.tip-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.tip-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.tip-title {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  color: var(--dark);
+}
+
+.tip-text {
+  font-size: 0.8rem;
+  color: var(--warm-gray);
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 30px 24px;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.footer a {
+  color: var(--gold);
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Cronograma de Stories</h1>
+    <div class="subtitle">Codigo da Elegancia &mdash; Semana Tipo</div>
+    <p class="desc">Sequencia semanal de stories com CTA estrategico para o metodo.<br>2-3 insercoes do link por semana, posicionadas nos picos de engajamento.</p>
+  </div>
+</div>
+
+<div class="strategy-bar">
+  Estrategia 10X: Aquecer &rarr; Gerar Identificacao &rarr; CTA no Pico de Conexao
+</div>
+
+<div class="container">
+
+  <div class="section-title">Visao da Semana</div>
+  <div class="section-sub">Cada dia tem um papel. O link aparece nos momentos de maior conexao emocional.</div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot aquecimento"></div> Aquecimento</div>
+    <div class="legend-item"><div class="legend-dot autoridade"></div> Autoridade</div>
+    <div class="legend-item"><div class="legend-dot cta"></div> CTA + Link</div>
+    <div class="legend-item"><div class="legend-dot conexao"></div> Conexao</div>
+    <div class="legend-item"><div class="legend-dot bastidor"></div> Bastidor</div>
+  </div>
+
+  <div class="calendar">
+    <!-- SEG -->
+    <div class="day-card">
+      <div class="day-header seg">Segunda</div>
+      <div class="day-body">
+        <div class="day-theme">Despertar</div>
+        <div class="day-tipo">Aquecimento</div>
+        <div class="story-block">
+          <div class="story-num">4-5 stories</div>
+          <div class="story-text">Reflexao sobre presenca e consciencia. Pergunta interativa. <em>Sem link &mdash; so abre a conversa.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TER -->
+    <div class="day-card">
+      <div class="day-header ter">Terca</div>
+      <div class="day-body">
+        <div class="day-theme">Pilar do Dia</div>
+        <div class="day-tipo">Autoridade + CTA</div>
+        <div class="story-block">
+          <div class="story-num">5-6 stories</div>
+          <div class="story-text">Ensina um dos 6 pilares com profundidade. Fecha com <strong>link do metodo</strong>.</div>
+          <span class="cta-badge">CTA #1 da semana</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUA -->
+    <div class="day-card">
+      <div class="day-header qua">Quarta</div>
+      <div class="day-body">
+        <div class="day-theme">Bastidores</div>
+        <div class="day-tipo">Bastidor / Conexao</div>
+        <div class="story-block">
+          <div class="story-num">3-4 stories</div>
+          <div class="story-text">Rotina, styling pessoal, bastidor de consultoria. <em>Humaniza sem vender.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUI -->
+    <div class="day-card">
+      <div class="day-header qui">Quinta</div>
+      <div class="day-body">
+        <div class="day-theme">Provocacao</div>
+        <div class="day-tipo">Identificacao + CTA</div>
+        <div class="story-block">
+          <div class="story-num">5-7 stories</div>
+          <div class="story-text">Confronto elegante: antes vs. depois, erros comuns. Fecha com <strong>link do metodo</strong>.</div>
+          <span class="cta-badge">CTA #2 da semana</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEX -->
+    <div class="day-card">
+      <div class="day-header sex">Sexta</div>
+      <div class="day-body">
+        <div class="day-theme">Autoridade</div>
+        <div class="day-tipo">Conteudo de Valor</div>
+        <div class="story-block">
+          <div class="story-num">4-5 stories</div>
+          <div class="story-text">Mini-aula pratica, dica aplicavel, analise de look. <em>Entrega valor puro.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAB -->
+    <div class="day-card">
+      <div class="day-header sab">Sabado</div>
+      <div class="day-body">
+        <div class="day-theme">Conexao</div>
+        <div class="day-tipo">Caixa de Perguntas</div>
+        <div class="story-block">
+          <div class="story-num">4-6 stories</div>
+          <div class="story-text">Caixa de perguntas, enquete, interacao. <em>Dia de ouvir e responder.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOM -->
+    <div class="day-card">
+      <div class="day-header dom">Domingo</div>
+      <div class="day-body">
+        <div class="day-theme">Manifesto</div>
+        <div class="day-tipo">Emocional + CTA</div>
+        <div class="story-block">
+          <div class="story-num">4-5 stories</div>
+          <div class="story-text">Frase-manifesto, reflexao profunda. Fecha com <strong>link do metodo</strong> no pico emocional.</div>
+          <span class="cta-badge">CTA #3 da semana</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAILED SEQUENCE -->
+  <div class="sequence-section">
+    <div class="section-title">Sequencia Detalhada</div>
+    <div class="section-sub">Story por story, com copy sugerida e formato.</div>
+
+    <!-- SEGUNDA -->
+    <div class="day-detail">
+      <div class="day-detail-header">
+        <div class="day-badge seg">SEG</div>
+        <div>
+          <div class="day-detail-title">Despertar &mdash; Abrir a Semana</div>
+          <div class="day-detail-subtitle">Objetivo: criar reflexao e abrir conversa. Sem venda.</div>
+        </div>
+      </div>
+      <div class="stories-flow">
+        <div class="story-item">
+          <div class="story-icon">1</div>
+          <div class="story-content">
+            <div class="story-label">Texto sobre fundo elegante</div>
+            <div class="story-desc">
+              Frase de abertura da semana.
+              <span class="copy">"Quantas vezes voce entrou num lugar... e sentiu que ninguem percebeu?"</span>
+              <span class="story-format">Fundo escuro + texto dourado + musica suave</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">2</div>
+          <div class="story-content">
+            <div class="story-label">Video selfie (30s)</div>
+            <div class="story-desc">
+              Kelly fala olhando pra camera, tom intimo:
+              <span class="copy">"Essa semana eu quero te mostrar uma coisa que ninguem te ensinou. Algo que muda a forma como o mundo te ve. Fica comigo."</span>
+              <span class="story-format">Selfie, luz natural, sem filtro pesado</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">3</div>
+          <div class="story-content">
+            <div class="story-label">Enquete interativa</div>
+            <div class="story-desc">
+              <span class="copy">"Voce sente que as pessoas te percebem do jeito que voce realmente e?"</span>
+              Opcoes: "Sim, totalmente" / "Nem sempre"
+              <span class="story-format">Enquete + fundo claro</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">4</div>
+          <div class="story-content">
+            <div class="story-label">Texto reflexivo</div>
+            <div class="story-desc">
+              <span class="copy">"Se voce respondeu 'nem sempre'... saiba que isso nao e falta de capacidade. E falta de consciencia sobre como voce esta sendo percebida. E isso tem codigo."</span>
+              <span class="story-format">Texto sobre fundo suave</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERCA - CTA #1 -->
+    <div class="day-detail">
+      <div class="day-detail-header">
+        <div class="day-badge ter">TER</div>
+        <div>
+          <div class="day-detail-title">Pilar do Dia &mdash; Ensina + CTA</div>
+          <div class="day-detail-subtitle">Objetivo: entregar valor de um pilar e converter. <span class="cta-badge gold">CTA #1</span></div>
+        </div>
+      </div>
+      <div class="stories-flow">
+        <div class="story-item">
+          <div class="story-icon">1</div>
+          <div class="story-content">
+            <div class="story-label">Gancho de abertura</div>
+            <div class="story-desc">
+              <span class="copy">"Voce sabia que a forma como voce ENTRA num ambiente comunica mais do que qualquer palavra que voce diga depois?"</span>
+              <span class="story-format">Texto impactante, fundo escuro</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">2</div>
+          <div class="story-content">
+            <div class="story-label">Video ensinando (45-60s)</div>
+            <div class="story-desc">
+              Kelly explica o pilar da semana (ex: PRESENCA). Exemplo pratico: "Entrada insegura vs. entrada consciente. Mesma mulher. Mesma roupa. A diferenca? Consciencia."
+              <span class="story-format">Video frontal, bem iluminado, fala pausada</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">3</div>
+          <div class="story-content">
+            <div class="story-label">Antes vs. Depois visual</div>
+            <div class="story-desc">
+              Duas fotos ou cena encenada mostrando o contraste do pilar.
+              <span class="copy">"A mesma mulher. A unica diferenca e o que ela sabe sobre si mesma."</span>
+              <span class="story-format">Carrossel ou comparativo lado a lado</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">4</div>
+          <div class="story-content">
+            <div class="story-label">Ponte para o metodo</div>
+            <div class="story-desc">
+              <span class="copy">"Isso nao e um dom. Isso e um codigo. E existe um metodo pra ativar esse codigo dentro de voce."</span>
+              <span class="story-format">Texto sobre fundo elegante</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">5</div>
+          <div class="story-content">
+            <div class="story-label">CTA com link</div>
+            <div class="story-desc">
+              <span class="copy-cta">Link para o Codigo da Elegancia &mdash; "Toca aqui pra conhecer o metodo que ja esta transformando mulheres."</span>
+              Link: codigo-da-elegancia.vercel.app
+              <span class="story-format">Sticker de link + seta animada + fundo dourado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUARTA -->
+    <div class="day-detail">
+      <div class="day-detail-header">
+        <div class="day-badge qua">QUA</div>
+        <div>
+          <div class="day-detail-title">Bastidores &mdash; Humanizar</div>
+          <div class="day-detail-subtitle">Objetivo: mostrar a Kelly real, criar proximidade. Sem venda.</div>
+        </div>
+      </div>
+      <div class="stories-flow">
+        <div class="story-item">
+          <div class="story-icon">1</div>
+          <div class="story-content">
+            <div class="story-label">Rotina / Styling pessoal</div>
+            <div class="story-desc">
+              Kelly mostra como escolheu o look do dia, processo de decisao.
+              <span class="copy">"Hoje eu escolhi esse look porque..."</span>
+              <span class="story-format">Video casual, espelho ou walking shot</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">2</div>
+          <div class="story-content">
+            <div class="story-label">Bastidor de consultoria</div>
+            <div class="story-desc">
+              Algo do dia a dia: preparando material, estudando, montando looks pra cliente (sem revelar identidade).
+              <span class="copy">"Esse e o meu dia quando nao estou na frente das cameras..."</span>
+              <span class="story-format">Fotos ou video curto bastidor</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">3</div>
+          <div class="story-content">
+            <div class="story-label">Momento pessoal</div>
+            <div class="story-desc">
+              Um cafe, um livro, uma paisagem. Algo que mostre a essencia da Kelly sem ser sobre trabalho.
+              <span class="story-format">Foto estetica + musica + texto curto opcional</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUINTA - CTA #2 -->
+    <div class="day-detail">
+      <div class="day-detail-header">
+        <div class="day-badge qui">QUI</div>
+        <div>
+          <div class="day-detail-title">Provocacao &mdash; Confrontar + CTA</div>
+          <div class="day-detail-subtitle">Objetivo: gerar identificacao pela dor e converter. <span class="cta-badge">CTA #2</span></div>
+        </div>
+      </div>
+      <div class="stories-flow">
+        <div class="story-item">
+          <div class="story-icon">1</div>
+          <div class="story-content">
+            <div class="story-label">Provocacao de abertura</div>
+            <div class="story-desc">
+              <span class="copy">"Voce tem guarda-roupa cheio... e nao tem nada pra vestir. Ja parou pra pensar por que?"</span>
+              <span class="story-format">Texto bold, fundo escuro, sem musica</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">2</div>
+          <div class="story-content">
+            <div class="story-label">Video confronto elegante (40s)</div>
+            <div class="story-desc">
+              Kelly fala direto, mas com empatia:
+              <span class="copy">"Nao e sobre roupa. Nunca foi. E sobre nao saber o que voce quer comunicar quando se veste. Quando voce nao sabe quem voce e... nenhuma roupa resolve."</span>
+              <span class="story-format">Close-up, tom firme mas acolhedor</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">3</div>
+          <div class="story-content">
+            <div class="story-label">Slider emocional</div>
+            <div class="story-desc">
+              <span class="copy">"O quanto voce se sente vista de verdade?"</span>
+              Slider de emoji (escondida &rarr; brilhando)
+              <span class="story-format">Sticker slider + fundo neutro</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">4</div>
+          <div class="story-content">
+            <div class="story-label">Reframe</div>
+            <div class="story-desc">
+              <span class="copy">"Existe muito mais dentro de voce do que aquilo que as pessoas conseguem perceber. A sua presenca ainda nao mostra tudo o que voce e. Mas pode mostrar."</span>
+              <span class="story-format">Texto poetico, fundo suave, musica emocional</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">5</div>
+          <div class="story-content">
+            <div class="story-label">CTA com link</div>
+            <div class="story-desc">
+              <span class="copy-cta">"O Codigo da Elegancia e o metodo que ativa isso em voce. 6 pilares. Presenca. Imagem. Postura. Etiqueta. Posicionamento. Conexao. Toca no link."</span>
+              Link: codigo-da-elegancia.vercel.app
+              <span class="story-format">Sticker de link + contagem regressiva (urgencia suave)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEXTA -->
+    <div class="day-detail">
+      <div class="day-detail-header">
+        <div class="day-badge sex">SEX</div>
+        <div>
+          <div class="day-detail-title">Autoridade &mdash; Valor Puro</div>
+          <div class="day-detail-subtitle">Objetivo: posicionar como especialista. Entrega generosa, sem pedir nada.</div>
+        </div>
+      </div>
+      <div class="stories-flow">
+        <div class="story-item">
+          <div class="story-icon">1</div>
+          <div class="story-content">
+            <div class="story-label">Mini-aula pratica</div>
+            <div class="story-desc">
+              Dica aplicavel do dia: "3 pecas que toda mulher deveria ter" / "O erro que 90% das mulheres cometem ao se vestir" / "Como a postura muda tudo em 5 segundos".
+              <span class="story-format">Video ensinando, 45-60s, ritmo didatico</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">2</div>
+          <div class="story-content">
+            <div class="story-label">Analise visual</div>
+            <div class="story-desc">
+              Kelly analisa um look (de famosa, de rua, proprio): o que funciona, o que nao, por que. Mostra leitura de imagem em tempo real.
+              <span class="story-format">Foto + texto de analise ou video narrando</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">3</div>
+          <div class="story-content">
+            <div class="story-label">Encerramento generoso</div>
+            <div class="story-desc">
+              <span class="copy">"Salva esse story. Aplica amanha. Me conta o resultado."</span>
+              <span class="story-format">Texto + sticker de salvar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SABADO -->
+    <div class="day-detail">
+      <div class="day-detail-header">
+        <div class="day-badge sab">SAB</div>
+        <div>
+          <div class="day-detail-title">Conexao &mdash; Ouvir e Responder</div>
+          <div class="day-detail-subtitle">Objetivo: engajamento, criar comunidade, coletar dores pra conteudo.</div>
+        </div>
+      </div>
+      <div class="stories-flow">
+        <div class="story-item">
+          <div class="story-icon">1</div>
+          <div class="story-content">
+            <div class="story-label">Caixa de perguntas</div>
+            <div class="story-desc">
+              <span class="copy">"Me conta: qual a sua maior dificuldade hoje quando o assunto e imagem e presenca?"</span>
+              <span class="story-format">Sticker de pergunta</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">2</div>
+          <div class="story-content">
+            <div class="story-label">Respostas em video</div>
+            <div class="story-desc">
+              Kelly responde 3-5 perguntas em video, com carinho e profundidade. Cada resposta vira um micro-conteudo.
+              <span class="story-format">Video selfie respondendo, 20-40s cada</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">3</div>
+          <div class="story-content">
+            <div class="story-label">Encerramento com enquete</div>
+            <div class="story-desc">
+              <span class="copy">"Qual pilar voce mais quer que eu aprofunde semana que vem?"</span>
+              Quiz com os 6 pilares.
+              <span class="story-format">Sticker quiz ou enquete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOMINGO - CTA #3 -->
+    <div class="day-detail">
+      <div class="day-detail-header">
+        <div class="day-badge dom">DOM</div>
+        <div>
+          <div class="day-detail-title">Manifesto &mdash; Emocional + CTA</div>
+          <div class="day-detail-subtitle">Objetivo: fechar a semana no pico emocional e converter. <span class="cta-badge">CTA #3</span></div>
+        </div>
+      </div>
+      <div class="stories-flow">
+        <div class="story-item">
+          <div class="story-icon">1</div>
+          <div class="story-content">
+            <div class="story-label">Frase-manifesto</div>
+            <div class="story-desc">
+              <span class="copy">"Elegancia e quando voce para de pedir licenca pra existir."</span>
+              <span class="story-format">Fundo cinematografico, tipografia elegante, musica emocional</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">2</div>
+          <div class="story-content">
+            <div class="story-label">Video reflexao (40-60s)</div>
+            <div class="story-desc">
+              Kelly fala como se fosse uma carta pra seguidora:
+              <span class="copy">"Eu criei esse metodo porque durante anos eu vi mulheres incriveis passando despercebidas. Nao por falta de talento. Por falta de consciencia. E eu decidi mudar isso."</span>
+              <span class="story-format">Video emocional, luz bonita, tom pausado</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">3</div>
+          <div class="story-content">
+            <div class="story-label">Depoimento ou transformacao</div>
+            <div class="story-desc">
+              Print de mensagem de aluna, antes/depois, ou resultado real. Se nao tiver, usar frase de impacto sobre transformacao.
+              <span class="copy">"Antes eu entrava pedindo licenca. Hoje eu escolho como entro."</span>
+              <span class="story-format">Print real ou texto estilizado</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon">4</div>
+          <div class="story-content">
+            <div class="story-label">CTA final da semana</div>
+            <div class="story-desc">
+              <span class="copy-cta">"Se voce sentiu que essa semana tocou em algo dentro de voce... o metodo vai muito mais fundo. 6 pilares. Uma transformacao real. Toca no link e comeca."</span>
+              Link: codigo-da-elegancia.vercel.app
+              <span class="story-format">Sticker de link grande + seta + "50 vagas"</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TIPS -->
+  <div class="section-title">Regras de Ouro</div>
+  <div class="section-sub">Para manter a elegancia e a conversao.</div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-number">01</div>
+      <div class="tip-title">Nunca venda fria</div>
+      <div class="tip-text">O link so aparece apos sequencia de valor ou emocao. Nunca no primeiro story do dia.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">02</div>
+      <div class="tip-title">Rotacione os pilares</div>
+      <div class="tip-text">Cada semana, a terca aborda um pilar diferente. Em 6 semanas, cobre todos.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">03</div>
+      <div class="tip-title">CTA com variacao</div>
+      <div class="tip-text">Alterne o tom: terca = educativo, quinta = emocional, domingo = inspiracional. Nunca repetitivo.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">04</div>
+      <div class="tip-title">Horarios estrategicos</div>
+      <div class="tip-text">CTAs nos horarios de pico: 11h-13h (almoco) e 20h-22h (noite). Bastidores podem ir a qualquer hora.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">05</div>
+      <div class="tip-title">Urgencia elegante</div>
+      <div class="tip-text">Usar "50 vagas" e contagem regressiva, nunca "CORRE" ou "ULTIMA CHANCE". Elegancia ate na urgencia.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">06</div>
+      <div class="tip-title">Salve as respostas</div>
+      <div class="tip-text">Respostas do sabado viram pauta da semana seguinte. Ciclo que se retroalimenta.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Cronograma Stories &mdash; Kelly Lemos &bull; Codigo da Elegancia<br>
+  Estrategia desenvolvida por <a href="#">Patrick Suyti</a> &bull; 2026
+</div>
+
+</body>
+</html>
