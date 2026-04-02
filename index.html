@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cronograma de Stories — Kelly Lemos</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --gold: #C5A265;
@@ -15,6 +15,8 @@
   --soft-pink: #F0E6DE;
   --deep-wine: #6B2D3E;
   --white: #FFFFFF;
+  --green: #4A7C59;
+  --green-light: #E8F0EA;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,6 +28,38 @@ body {
   line-height: 1.6;
 }
 
+/* NAV */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(26,26,26,0.95);
+  backdrop-filter: blur(10px);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.nav a:hover, .nav a.active {
+  color: var(--dark);
+  background: var(--gold);
+}
+
+/* HERO */
 .hero {
   background: linear-gradient(135deg, var(--dark) 0%, #2D2420 50%, var(--dark) 100%);
   color: var(--white);
@@ -65,7 +99,7 @@ body {
 .hero .desc {
   font-size: 0.95rem;
   color: rgba(255,255,255,0.6);
-  max-width: 520px;
+  max-width: 560px;
   margin: 0 auto;
   line-height: 1.7;
 }
@@ -104,7 +138,7 @@ body {
   font-weight: 300;
 }
 
-/* Legend */
+/* LEGEND */
 .legend {
   display: flex;
   justify-content: center;
@@ -134,7 +168,7 @@ body {
 .legend-dot.conexao { background: #B8A89A; }
 .legend-dot.bastidor { background: #D4C4B0; }
 
-/* Calendar Grid */
+/* CALENDAR GRID */
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -180,9 +214,7 @@ body {
 .day-header.sab { background: #B8A89A; color: var(--white); }
 .day-header.dom { background: var(--deep-wine); color: var(--white); }
 
-.day-body {
-  padding: 16px;
-}
+.day-body { padding: 16px; }
 
 .day-theme {
   font-family: 'Cormorant Garamond', serif;
@@ -225,15 +257,8 @@ body {
   line-height: 1.5;
 }
 
-.story-text em {
-  font-style: italic;
-  color: var(--warm-gray);
-}
-
-.story-text strong {
-  color: var(--deep-wine);
-  font-weight: 600;
-}
+.story-text em { font-style: italic; color: var(--warm-gray); }
+.story-text strong { color: var(--deep-wine); font-weight: 600; }
 
 .cta-badge {
   display: inline-block;
@@ -248,16 +273,9 @@ body {
   margin-top: 6px;
 }
 
-.cta-badge.gold {
-  background: var(--gold);
-  color: var(--dark);
-}
+.cta-badge.gold { background: var(--gold); color: var(--dark); }
 
-/* Sequence Detail */
-.sequence-section {
-  margin-bottom: 48px;
-}
-
+/* DAY DETAIL */
 .day-detail {
   background: var(--white);
   border-radius: 16px;
@@ -386,7 +404,70 @@ body {
   border-radius: 4px;
 }
 
-/* Tips Section */
+.story-desc .alt-copy {
+  display: block;
+  margin-top: 4px;
+  padding: 6px 12px;
+  background: var(--soft-pink);
+  border-left: 3px solid var(--deep-wine);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  font-size: 0.78rem;
+  color: #666;
+}
+
+.story-desc .instrucao {
+  display: block;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--green-light);
+  border-left: 3px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.78rem;
+  color: #3A5C44;
+  font-style: normal;
+}
+
+/* INSTRUCTION BOXES */
+.instrucao-box {
+  background: var(--green-light);
+  border: 1px solid rgba(74,124,89,0.2);
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 12px;
+}
+
+.instrucao-box h4 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.instrucao-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.instrucao-box li {
+  font-size: 0.82rem;
+  color: #3A5C44;
+  padding: 4px 0 4px 16px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.instrucao-box li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* TIPS */
 .tips-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -427,7 +508,228 @@ body {
   line-height: 1.5;
 }
 
-/* Footer */
+/* ROTATION TABLE */
+.rotation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.rotation-table th {
+  background: var(--dark);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.rotation-table td {
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  border-bottom: 1px solid var(--cream);
+  color: var(--dark);
+}
+
+.rotation-table tr:last-child td { border-bottom: none; }
+
+.rotation-table tr:nth-child(even) td { background: var(--cream); }
+
+.rotation-table .pilar-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.p1 { background: #E8D5C0; color: var(--dark); }
+.p2 { background: #D4B87A; color: var(--dark); }
+.p3 { background: #B8A89A; color: var(--white); }
+.p4 { background: var(--deep-wine); color: var(--white); }
+.p5 { background: var(--gold); color: var(--white); }
+.p6 { background: var(--dark); color: var(--gold); }
+
+/* CHECKLIST */
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+@media (max-width: 600px) {
+  .checklist-grid { grid-template-columns: 1fr; }
+}
+
+.checklist-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.checklist-card h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gold);
+}
+
+.checklist-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.checklist-card li {
+  font-size: 0.82rem;
+  color: var(--dark);
+  padding: 6px 0 6px 24px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.checklist-card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--gold);
+  border-radius: 3px;
+}
+
+/* STICKER GUIDE */
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+
+@media (max-width: 700px) {
+  .sticker-grid { grid-template-columns: 1fr; }
+}
+
+.sticker-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.sticker-emoji {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.sticker-name {
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.sticker-when {
+  font-size: 0.75rem;
+  color: var(--warm-gray);
+  line-height: 1.4;
+}
+
+/* SCHEDULE TABLE */
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.schedule-table th {
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.schedule-table td {
+  padding: 10px 14px;
+  font-size: 0.78rem;
+  border-bottom: 1px solid var(--cream);
+  text-align: center;
+  color: var(--dark);
+}
+
+.schedule-table tr:last-child td { border-bottom: none; }
+.schedule-table .hour { font-weight: 600; color: var(--gold); }
+.schedule-table .best { background: rgba(107,45,62,0.08); font-weight: 600; }
+
+/* COPY BANK */
+.copy-bank {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+
+@media (max-width: 600px) {
+  .copy-bank { grid-template-columns: 1fr; }
+}
+
+.copy-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-left: 3px solid var(--gold);
+}
+
+.copy-card .copy-cat {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.copy-card .copy-text {
+  font-size: 0.85rem;
+  color: #555;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.copy-card.cta-card { border-left-color: var(--deep-wine); }
+.copy-card.cta-card .copy-cat { color: var(--deep-wine); }
+
+/* DIVIDER */
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 48px auto 40px;
+}
+
+/* FOOTER */
 .footer {
   background: var(--dark);
   color: rgba(255,255,255,0.5);
@@ -437,30 +739,44 @@ body {
   letter-spacing: 0.04em;
 }
 
-.footer a {
-  color: var(--gold);
-  text-decoration: none;
-}
+.footer a { color: var(--gold); text-decoration: none; }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav class="nav">
+  <a href="#visao">Visao Geral</a>
+  <a href="#detalhado">Dia a Dia</a>
+  <a href="#rotacao">6 Semanas</a>
+  <a href="#gravacao">Como Gravar</a>
+  <a href="#stickers">Stickers</a>
+  <a href="#horarios">Horarios</a>
+  <a href="#copies">Banco de Copies</a>
+  <a href="#checklist">Checklist</a>
+  <a href="#regras">Regras</a>
+</nav>
+
+<!-- HERO -->
 <div class="hero">
   <div class="hero-content">
     <h1>Cronograma de Stories</h1>
     <div class="subtitle">Codigo da Elegancia &mdash; Semana Tipo</div>
-    <p class="desc">Sequencia semanal de stories com CTA estrategico para o metodo.<br>2-3 insercoes do link por semana, posicionadas nos picos de engajamento.</p>
+    <p class="desc">Guia completo com sequencia semanal, copies prontas, instrucoes de gravacao, rotacao de pilares por 6 semanas e checklist diario. 3 CTAs por semana com link do metodo nos picos de conexao.</p>
   </div>
 </div>
 
 <div class="strategy-bar">
-  Estrategia 10X: Aquecer &rarr; Gerar Identificacao &rarr; CTA no Pico de Conexao
+  Estrategia 10X: Aquecer &rarr; Gerar Identificacao &rarr; CTA no Pico de Conexao &rarr; Repetir
 </div>
 
-<div class="container">
+<!-- ============================== -->
+<!-- SECAO 1: VISAO GERAL -->
+<!-- ============================== -->
+<div class="container" id="visao">
 
   <div class="section-title">Visao da Semana</div>
-  <div class="section-sub">Cada dia tem um papel. O link aparece nos momentos de maior conexao emocional.</div>
+  <div class="section-sub">Cada dia tem um papel. O link aparece nos 3 momentos de maior conexao emocional.</div>
 
   <div class="legend">
     <div class="legend-item"><div class="legend-dot aquecimento"></div> Aquecimento</div>
@@ -471,7 +787,6 @@ body {
   </div>
 
   <div class="calendar">
-    <!-- SEG -->
     <div class="day-card">
       <div class="day-header seg">Segunda</div>
       <div class="day-body">
@@ -483,8 +798,6 @@ body {
         </div>
       </div>
     </div>
-
-    <!-- TER -->
     <div class="day-card">
       <div class="day-header ter">Terca</div>
       <div class="day-body">
@@ -497,8 +810,6 @@ body {
         </div>
       </div>
     </div>
-
-    <!-- QUA -->
     <div class="day-card">
       <div class="day-header qua">Quarta</div>
       <div class="day-body">
@@ -510,8 +821,6 @@ body {
         </div>
       </div>
     </div>
-
-    <!-- QUI -->
     <div class="day-card">
       <div class="day-header qui">Quinta</div>
       <div class="day-body">
@@ -524,8 +833,6 @@ body {
         </div>
       </div>
     </div>
-
-    <!-- SEX -->
     <div class="day-card">
       <div class="day-header sex">Sexta</div>
       <div class="day-body">
@@ -537,8 +844,6 @@ body {
         </div>
       </div>
     </div>
-
-    <!-- SAB -->
     <div class="day-card">
       <div class="day-header sab">Sabado</div>
       <div class="day-body">
@@ -550,8 +855,6 @@ body {
         </div>
       </div>
     </div>
-
-    <!-- DOM -->
     <div class="day-card">
       <div class="day-header dom">Domingo</div>
       <div class="day-body">
@@ -559,437 +862,1074 @@ body {
         <div class="day-tipo">Emocional + CTA</div>
         <div class="story-block">
           <div class="story-num">4-5 stories</div>
-          <div class="story-text">Frase-manifesto, reflexao profunda. Fecha com <strong>link do metodo</strong> no pico emocional.</div>
+          <div class="story-text">Frase-manifesto, reflexao profunda. Fecha com <strong>link do metodo</strong>.</div>
           <span class="cta-badge">CTA #3 da semana</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- DETAILED SEQUENCE -->
-  <div class="sequence-section">
-    <div class="section-title">Sequencia Detalhada</div>
-    <div class="section-sub">Story por story, com copy sugerida e formato.</div>
+</div>
 
-    <!-- SEGUNDA -->
-    <div class="day-detail">
-      <div class="day-detail-header">
-        <div class="day-badge seg">SEG</div>
-        <div>
-          <div class="day-detail-title">Despertar &mdash; Abrir a Semana</div>
-          <div class="day-detail-subtitle">Objetivo: criar reflexao e abrir conversa. Sem venda.</div>
+<!-- ============================== -->
+<!-- SECAO 2: DIA A DIA DETALHADO -->
+<!-- ============================== -->
+<div class="container" id="detalhado">
+
+  <div class="section-divider"></div>
+  <div class="section-title">Sequencia Detalhada</div>
+  <div class="section-sub">Story por story, com copy pronta, alternativas e instrucoes de gravacao em verde.</div>
+
+  <!-- SEGUNDA -->
+  <div class="day-detail">
+    <div class="day-detail-header">
+      <div class="day-badge seg">SEG</div>
+      <div>
+        <div class="day-detail-title">Despertar &mdash; Abrir a Semana</div>
+        <div class="day-detail-subtitle">Objetivo: criar reflexao e abrir conversa. Sem venda. Postar entre 10h-12h.</div>
+      </div>
+    </div>
+    <div class="stories-flow">
+      <div class="story-item">
+        <div class="story-icon">1</div>
+        <div class="story-content">
+          <div class="story-label">Texto sobre fundo elegante</div>
+          <div class="story-desc">
+            Frase de abertura da semana.
+            <span class="copy">"Quantas vezes voce entrou num lugar... e sentiu que ninguem percebeu?"</span>
+            <span class="alt-copy">Alternativa: "Voce ja parou pra pensar qual mensagem voce envia antes de abrir a boca?"</span>
+            <span class="alt-copy">Alternativa: "Segunda-feira. Novo comeco. Dessa vez, com consciencia."</span>
+            <span class="instrucao">COMO FAZER: Abra o Instagram > Novo Story > Toque no "Aa" (texto) > Escolha fundo escuro (preto ou marrom) > Use fonte classica (serif) > Cor do texto: dourado (#C5A265). Adicione musica suave instrumental. Nao coloque sticker nenhum nesse story — e pra impactar com silencio.</span>
+            <span class="story-format">Fundo escuro + texto dourado + musica suave</span>
+          </div>
         </div>
       </div>
-      <div class="stories-flow">
-        <div class="story-item">
-          <div class="story-icon">1</div>
-          <div class="story-content">
-            <div class="story-label">Texto sobre fundo elegante</div>
-            <div class="story-desc">
-              Frase de abertura da semana.
-              <span class="copy">"Quantas vezes voce entrou num lugar... e sentiu que ninguem percebeu?"</span>
-              <span class="story-format">Fundo escuro + texto dourado + musica suave</span>
-            </div>
+      <div class="story-item">
+        <div class="story-icon">2</div>
+        <div class="story-content">
+          <div class="story-label">Video selfie (20-30s)</div>
+          <div class="story-desc">
+            Kelly fala olhando pra camera, tom intimo:
+            <span class="copy">"Essa semana eu quero te mostrar uma coisa que ninguem te ensinou. Algo que muda a forma como o mundo te ve. Fica comigo."</span>
+            <span class="alt-copy">Alternativa: "Bom dia. Essa semana vai ser diferente. Eu tenho algo pra te contar que pode mudar a maneira como voce se ve."</span>
+            <span class="instrucao">COMO GRAVAR: Posicione o celular na altura dos olhos (nunca de baixo pra cima). Luz natural de frente — fique perto de uma janela. Fale devagar, com pausas intencionais. Olhe direto na camera, como se tivesse falando com uma amiga. Sem filtro pesado — pode usar ajuste suave de luz. Grave 2-3 vezes e escolha a que parecer mais natural.</span>
+            <span class="story-format">Selfie, luz natural, sem filtro pesado</span>
           </div>
         </div>
-        <div class="story-item">
-          <div class="story-icon">2</div>
-          <div class="story-content">
-            <div class="story-label">Video selfie (30s)</div>
-            <div class="story-desc">
-              Kelly fala olhando pra camera, tom intimo:
-              <span class="copy">"Essa semana eu quero te mostrar uma coisa que ninguem te ensinou. Algo que muda a forma como o mundo te ve. Fica comigo."</span>
-              <span class="story-format">Selfie, luz natural, sem filtro pesado</span>
-            </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">3</div>
+        <div class="story-content">
+          <div class="story-label">Enquete interativa</div>
+          <div class="story-desc">
+            <span class="copy">"Voce sente que as pessoas te percebem do jeito que voce realmente e?"</span>
+            Opcoes: "Sim, totalmente" / "Nem sempre"
+            <span class="alt-copy">Alternativa: "Quando voce entra numa sala, voce se sente..." &mdash; "Segura" / "Insegura"</span>
+            <span class="instrucao">COMO FAZER: Novo Story > fundo claro (bege ou branco) > escreva a pergunta > adicione sticker de ENQUETE (nao quiz, nao slider). As duas opcoes devem ser curtas. Esse story gera dados: salve as respostas pra usar no sabado.</span>
+            <span class="story-format">Enquete + fundo claro</span>
           </div>
         </div>
-        <div class="story-item">
-          <div class="story-icon">3</div>
-          <div class="story-content">
-            <div class="story-label">Enquete interativa</div>
-            <div class="story-desc">
-              <span class="copy">"Voce sente que as pessoas te percebem do jeito que voce realmente e?"</span>
-              Opcoes: "Sim, totalmente" / "Nem sempre"
-              <span class="story-format">Enquete + fundo claro</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">4</div>
-          <div class="story-content">
-            <div class="story-label">Texto reflexivo</div>
-            <div class="story-desc">
-              <span class="copy">"Se voce respondeu 'nem sempre'... saiba que isso nao e falta de capacidade. E falta de consciencia sobre como voce esta sendo percebida. E isso tem codigo."</span>
-              <span class="story-format">Texto sobre fundo suave</span>
-            </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">4</div>
+        <div class="story-content">
+          <div class="story-label">Texto reflexivo de fechamento</div>
+          <div class="story-desc">
+            <span class="copy">"Se voce respondeu 'nem sempre'... saiba que isso nao e falta de capacidade. E falta de consciencia sobre como voce esta sendo percebida. E isso tem codigo."</span>
+            <span class="alt-copy">Alternativa: "A maioria das mulheres passa a vida toda sem perceber isso. Essa semana eu vou te mostrar."</span>
+            <span class="instrucao">COMO FAZER: Fundo suave (bege ou rosa claro) > texto em preto ou marrom escuro > fonte serif. Esse story planta a semente pra terca-feira. Deixe como ultimo story do dia.</span>
+            <span class="story-format">Texto sobre fundo suave</span>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- TERCA - CTA #1 -->
-    <div class="day-detail">
-      <div class="day-detail-header">
-        <div class="day-badge ter">TER</div>
-        <div>
-          <div class="day-detail-title">Pilar do Dia &mdash; Ensina + CTA</div>
-          <div class="day-detail-subtitle">Objetivo: entregar valor de um pilar e converter. <span class="cta-badge gold">CTA #1</span></div>
-        </div>
-      </div>
-      <div class="stories-flow">
-        <div class="story-item">
-          <div class="story-icon">1</div>
-          <div class="story-content">
-            <div class="story-label">Gancho de abertura</div>
-            <div class="story-desc">
-              <span class="copy">"Voce sabia que a forma como voce ENTRA num ambiente comunica mais do que qualquer palavra que voce diga depois?"</span>
-              <span class="story-format">Texto impactante, fundo escuro</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">2</div>
-          <div class="story-content">
-            <div class="story-label">Video ensinando (45-60s)</div>
-            <div class="story-desc">
-              Kelly explica o pilar da semana (ex: PRESENCA). Exemplo pratico: "Entrada insegura vs. entrada consciente. Mesma mulher. Mesma roupa. A diferenca? Consciencia."
-              <span class="story-format">Video frontal, bem iluminado, fala pausada</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">3</div>
-          <div class="story-content">
-            <div class="story-label">Antes vs. Depois visual</div>
-            <div class="story-desc">
-              Duas fotos ou cena encenada mostrando o contraste do pilar.
-              <span class="copy">"A mesma mulher. A unica diferenca e o que ela sabe sobre si mesma."</span>
-              <span class="story-format">Carrossel ou comparativo lado a lado</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">4</div>
-          <div class="story-content">
-            <div class="story-label">Ponte para o metodo</div>
-            <div class="story-desc">
-              <span class="copy">"Isso nao e um dom. Isso e um codigo. E existe um metodo pra ativar esse codigo dentro de voce."</span>
-              <span class="story-format">Texto sobre fundo elegante</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">5</div>
-          <div class="story-content">
-            <div class="story-label">CTA com link</div>
-            <div class="story-desc">
-              <span class="copy-cta">Link para o Codigo da Elegancia &mdash; "Toca aqui pra conhecer o metodo que ja esta transformando mulheres."</span>
-              Link: codigo-da-elegancia.vercel.app
-              <span class="story-format">Sticker de link + seta animada + fundo dourado</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="instrucao-box">
+      <h4>Instrucoes extras — Segunda</h4>
+      <ul>
+        <li>Segunda e o dia mais leve. Nao force conteudo pesado.</li>
+        <li>Maximo 4-5 stories. Menos e mais.</li>
+        <li>O tom e de "sussurro" — como quem esta abrindo uma porta devagar.</li>
+        <li>Se nao tiver energia pra gravar video, faca so os 3 stories de texto + enquete.</li>
+        <li>Responda TODAS as respostas da enquete via DM com "Obrigada por responder" — isso gera reciprocidade.</li>
+      </ul>
     </div>
-
-    <!-- QUARTA -->
-    <div class="day-detail">
-      <div class="day-detail-header">
-        <div class="day-badge qua">QUA</div>
-        <div>
-          <div class="day-detail-title">Bastidores &mdash; Humanizar</div>
-          <div class="day-detail-subtitle">Objetivo: mostrar a Kelly real, criar proximidade. Sem venda.</div>
-        </div>
-      </div>
-      <div class="stories-flow">
-        <div class="story-item">
-          <div class="story-icon">1</div>
-          <div class="story-content">
-            <div class="story-label">Rotina / Styling pessoal</div>
-            <div class="story-desc">
-              Kelly mostra como escolheu o look do dia, processo de decisao.
-              <span class="copy">"Hoje eu escolhi esse look porque..."</span>
-              <span class="story-format">Video casual, espelho ou walking shot</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">2</div>
-          <div class="story-content">
-            <div class="story-label">Bastidor de consultoria</div>
-            <div class="story-desc">
-              Algo do dia a dia: preparando material, estudando, montando looks pra cliente (sem revelar identidade).
-              <span class="copy">"Esse e o meu dia quando nao estou na frente das cameras..."</span>
-              <span class="story-format">Fotos ou video curto bastidor</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">3</div>
-          <div class="story-content">
-            <div class="story-label">Momento pessoal</div>
-            <div class="story-desc">
-              Um cafe, um livro, uma paisagem. Algo que mostre a essencia da Kelly sem ser sobre trabalho.
-              <span class="story-format">Foto estetica + musica + texto curto opcional</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- QUINTA - CTA #2 -->
-    <div class="day-detail">
-      <div class="day-detail-header">
-        <div class="day-badge qui">QUI</div>
-        <div>
-          <div class="day-detail-title">Provocacao &mdash; Confrontar + CTA</div>
-          <div class="day-detail-subtitle">Objetivo: gerar identificacao pela dor e converter. <span class="cta-badge">CTA #2</span></div>
-        </div>
-      </div>
-      <div class="stories-flow">
-        <div class="story-item">
-          <div class="story-icon">1</div>
-          <div class="story-content">
-            <div class="story-label">Provocacao de abertura</div>
-            <div class="story-desc">
-              <span class="copy">"Voce tem guarda-roupa cheio... e nao tem nada pra vestir. Ja parou pra pensar por que?"</span>
-              <span class="story-format">Texto bold, fundo escuro, sem musica</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">2</div>
-          <div class="story-content">
-            <div class="story-label">Video confronto elegante (40s)</div>
-            <div class="story-desc">
-              Kelly fala direto, mas com empatia:
-              <span class="copy">"Nao e sobre roupa. Nunca foi. E sobre nao saber o que voce quer comunicar quando se veste. Quando voce nao sabe quem voce e... nenhuma roupa resolve."</span>
-              <span class="story-format">Close-up, tom firme mas acolhedor</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">3</div>
-          <div class="story-content">
-            <div class="story-label">Slider emocional</div>
-            <div class="story-desc">
-              <span class="copy">"O quanto voce se sente vista de verdade?"</span>
-              Slider de emoji (escondida &rarr; brilhando)
-              <span class="story-format">Sticker slider + fundo neutro</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">4</div>
-          <div class="story-content">
-            <div class="story-label">Reframe</div>
-            <div class="story-desc">
-              <span class="copy">"Existe muito mais dentro de voce do que aquilo que as pessoas conseguem perceber. A sua presenca ainda nao mostra tudo o que voce e. Mas pode mostrar."</span>
-              <span class="story-format">Texto poetico, fundo suave, musica emocional</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">5</div>
-          <div class="story-content">
-            <div class="story-label">CTA com link</div>
-            <div class="story-desc">
-              <span class="copy-cta">"O Codigo da Elegancia e o metodo que ativa isso em voce. 6 pilares. Presenca. Imagem. Postura. Etiqueta. Posicionamento. Conexao. Toca no link."</span>
-              Link: codigo-da-elegancia.vercel.app
-              <span class="story-format">Sticker de link + contagem regressiva (urgencia suave)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SEXTA -->
-    <div class="day-detail">
-      <div class="day-detail-header">
-        <div class="day-badge sex">SEX</div>
-        <div>
-          <div class="day-detail-title">Autoridade &mdash; Valor Puro</div>
-          <div class="day-detail-subtitle">Objetivo: posicionar como especialista. Entrega generosa, sem pedir nada.</div>
-        </div>
-      </div>
-      <div class="stories-flow">
-        <div class="story-item">
-          <div class="story-icon">1</div>
-          <div class="story-content">
-            <div class="story-label">Mini-aula pratica</div>
-            <div class="story-desc">
-              Dica aplicavel do dia: "3 pecas que toda mulher deveria ter" / "O erro que 90% das mulheres cometem ao se vestir" / "Como a postura muda tudo em 5 segundos".
-              <span class="story-format">Video ensinando, 45-60s, ritmo didatico</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">2</div>
-          <div class="story-content">
-            <div class="story-label">Analise visual</div>
-            <div class="story-desc">
-              Kelly analisa um look (de famosa, de rua, proprio): o que funciona, o que nao, por que. Mostra leitura de imagem em tempo real.
-              <span class="story-format">Foto + texto de analise ou video narrando</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">3</div>
-          <div class="story-content">
-            <div class="story-label">Encerramento generoso</div>
-            <div class="story-desc">
-              <span class="copy">"Salva esse story. Aplica amanha. Me conta o resultado."</span>
-              <span class="story-format">Texto + sticker de salvar</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SABADO -->
-    <div class="day-detail">
-      <div class="day-detail-header">
-        <div class="day-badge sab">SAB</div>
-        <div>
-          <div class="day-detail-title">Conexao &mdash; Ouvir e Responder</div>
-          <div class="day-detail-subtitle">Objetivo: engajamento, criar comunidade, coletar dores pra conteudo.</div>
-        </div>
-      </div>
-      <div class="stories-flow">
-        <div class="story-item">
-          <div class="story-icon">1</div>
-          <div class="story-content">
-            <div class="story-label">Caixa de perguntas</div>
-            <div class="story-desc">
-              <span class="copy">"Me conta: qual a sua maior dificuldade hoje quando o assunto e imagem e presenca?"</span>
-              <span class="story-format">Sticker de pergunta</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">2</div>
-          <div class="story-content">
-            <div class="story-label">Respostas em video</div>
-            <div class="story-desc">
-              Kelly responde 3-5 perguntas em video, com carinho e profundidade. Cada resposta vira um micro-conteudo.
-              <span class="story-format">Video selfie respondendo, 20-40s cada</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">3</div>
-          <div class="story-content">
-            <div class="story-label">Encerramento com enquete</div>
-            <div class="story-desc">
-              <span class="copy">"Qual pilar voce mais quer que eu aprofunde semana que vem?"</span>
-              Quiz com os 6 pilares.
-              <span class="story-format">Sticker quiz ou enquete</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DOMINGO - CTA #3 -->
-    <div class="day-detail">
-      <div class="day-detail-header">
-        <div class="day-badge dom">DOM</div>
-        <div>
-          <div class="day-detail-title">Manifesto &mdash; Emocional + CTA</div>
-          <div class="day-detail-subtitle">Objetivo: fechar a semana no pico emocional e converter. <span class="cta-badge">CTA #3</span></div>
-        </div>
-      </div>
-      <div class="stories-flow">
-        <div class="story-item">
-          <div class="story-icon">1</div>
-          <div class="story-content">
-            <div class="story-label">Frase-manifesto</div>
-            <div class="story-desc">
-              <span class="copy">"Elegancia e quando voce para de pedir licenca pra existir."</span>
-              <span class="story-format">Fundo cinematografico, tipografia elegante, musica emocional</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">2</div>
-          <div class="story-content">
-            <div class="story-label">Video reflexao (40-60s)</div>
-            <div class="story-desc">
-              Kelly fala como se fosse uma carta pra seguidora:
-              <span class="copy">"Eu criei esse metodo porque durante anos eu vi mulheres incriveis passando despercebidas. Nao por falta de talento. Por falta de consciencia. E eu decidi mudar isso."</span>
-              <span class="story-format">Video emocional, luz bonita, tom pausado</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">3</div>
-          <div class="story-content">
-            <div class="story-label">Depoimento ou transformacao</div>
-            <div class="story-desc">
-              Print de mensagem de aluna, antes/depois, ou resultado real. Se nao tiver, usar frase de impacto sobre transformacao.
-              <span class="copy">"Antes eu entrava pedindo licenca. Hoje eu escolho como entro."</span>
-              <span class="story-format">Print real ou texto estilizado</span>
-            </div>
-          </div>
-        </div>
-        <div class="story-item">
-          <div class="story-icon">4</div>
-          <div class="story-content">
-            <div class="story-label">CTA final da semana</div>
-            <div class="story-desc">
-              <span class="copy-cta">"Se voce sentiu que essa semana tocou em algo dentro de voce... o metodo vai muito mais fundo. 6 pilares. Uma transformacao real. Toca no link e comeca."</span>
-              Link: codigo-da-elegancia.vercel.app
-              <span class="story-format">Sticker de link grande + seta + "50 vagas"</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- TIPS -->
-  <div class="section-title">Regras de Ouro</div>
-  <div class="section-sub">Para manter a elegancia e a conversao.</div>
+  <!-- TERCA - CTA #1 -->
+  <div class="day-detail">
+    <div class="day-detail-header">
+      <div class="day-badge ter">TER</div>
+      <div>
+        <div class="day-detail-title">Pilar do Dia &mdash; Ensina + CTA</div>
+        <div class="day-detail-subtitle">Objetivo: entregar valor profundo e converter. Postar 11h-13h. <span class="cta-badge gold">CTA #1</span></div>
+      </div>
+    </div>
+    <div class="stories-flow">
+      <div class="story-item">
+        <div class="story-icon">1</div>
+        <div class="story-content">
+          <div class="story-label">Gancho de abertura</div>
+          <div class="story-desc">
+            <span class="copy">"Voce sabia que a forma como voce ENTRA num ambiente comunica mais do que qualquer palavra que voce diga depois?"</span>
+            <span class="alt-copy">Para Pilar Imagem: "Voce tem guarda-roupa cheio... mas sente que nao tem nada pra vestir?"</span>
+            <span class="alt-copy">Para Pilar Postura: "Uma unica mudanca no seu corpo muda como o mundo te trata."</span>
+            <span class="alt-copy">Para Pilar Etiqueta: "Etiqueta nao e saber qual talher usar. E inteligencia social."</span>
+            <span class="alt-copy">Para Pilar Posicionamento: "Se voce nao define sua posicao... o ambiente define por voce."</span>
+            <span class="alt-copy">Para Pilar Conexao: "Presenca chama atencao. Mas conexao cria memoria."</span>
+            <span class="instrucao">COMO FAZER: Texto impactante em fundo escuro. Fonte grande, bold. Esse e o "scroll-stopper" — precisa parar a pessoa. Use cores contrastantes. Pode usar uma unica palavra grande no topo e o texto menor embaixo.</span>
+            <span class="story-format">Texto impactante, fundo escuro</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">2</div>
+        <div class="story-content">
+          <div class="story-label">Video ensinando (45-60s)</div>
+          <div class="story-desc">
+            Kelly explica o pilar da semana com exemplo pratico. Para PRESENCA: "Entrada insegura vs. entrada consciente. Mesma mulher. Mesma roupa. A diferenca? Consciencia."
+            <span class="instrucao">COMO GRAVAR: Use tripe ou apoie o celular na altura dos olhos. Cenario limpo — parede neutra, planta ou livros ao fundo. Luz de frente. Vista algo que represente o pilar (blazer pra autoridade, look casual-chique pra imagem). Fale em 3 blocos: (1) O que e esse pilar, (2) Exemplo real, (3) "E isso que eu ensino no metodo." Maximo 60 segundos — se passar, corte.</span>
+            <span class="story-format">Video frontal, bem iluminado, fala pausada</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">3</div>
+        <div class="story-content">
+          <div class="story-label">Antes vs. Depois visual</div>
+          <div class="story-desc">
+            Duas fotos ou cena encenada mostrando o contraste do pilar.
+            <span class="copy">"A mesma mulher. A unica diferenca e o que ela sabe sobre si mesma."</span>
+            <span class="instrucao">COMO FAZER: Se puder encenar — grave duas cenas curtas (5s cada): uma "errada" e uma "correta" (ex: entrada insegura vs. consciente). Cole as duas no mesmo story com layout lado a lado. Se nao puder encenar, use duas fotos com texto "Antes" e "Depois" sobre elas. Pode usar o layout do Instagram (sticker de colagem).</span>
+            <span class="story-format">Comparativo lado a lado ou video encenado</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">4</div>
+        <div class="story-content">
+          <div class="story-label">Ponte para o metodo</div>
+          <div class="story-desc">
+            <span class="copy">"Isso nao e um dom. Isso e um codigo. E existe um metodo pra ativar esse codigo dentro de voce."</span>
+            <span class="alt-copy">Alternativa: "Eu passei 15 anos estudando isso. E transformei em 6 pilares que qualquer mulher pode aplicar."</span>
+            <span class="instrucao">COMO FAZER: Texto elegante em fundo dourado ou escuro. Esse story prepara o proximo — e a "rampa" antes do link. Nao coloque link aqui ainda. Deixe a curiosidade.</span>
+            <span class="story-format">Texto elegante, fundo dourado</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">5</div>
+        <div class="story-content">
+          <div class="story-label">CTA com link</div>
+          <div class="story-desc">
+            <span class="copy-cta">"Toca aqui pra conhecer o Codigo da Elegancia — o metodo que ensina mulheres a construir presenca, imagem e posicionamento com intencao."</span>
+            Link: codigo-da-elegancia.vercel.app
+            <span class="alt-copy">CTA alternativo: "Sao 50 vagas. 6 pilares. Uma transformacao real. O link esta aqui."</span>
+            <span class="alt-copy">CTA alternativo: "Eu so abro esse metodo pra quem esta pronta. Se voce sentiu que e pra voce... toca no link."</span>
+            <span class="instrucao">COMO FAZER: Fundo dourado ou wine (vinho). Texto branco, grande. Adicione o sticker de LINK (nao o de "arraste pra cima" antigo). Posicione o link no centro da tela. Adicione uma seta animada apontando pro link (use GIF de seta no sticker). Pode adicionar sticker de contagem regressiva se tiver prazo. IMPORTANTE: nunca escreva "COMPRE" ou "CORRE". Use "Toca aqui", "Conheca", "Comece agora".</span>
+            <span class="story-format">Sticker de link + seta animada + fundo dourado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="instrucao-box">
+      <h4>Instrucoes extras — Terca (CTA #1)</h4>
+      <ul>
+        <li>Terca e o dia mais importante da semana. E aqui que a autoridade se constroi.</li>
+        <li>O pilar da semana roda conforme a tabela de rotacao (veja abaixo).</li>
+        <li>Se possivel, poste entre 11h-13h (horario de almoco = pico de visualizacao).</li>
+        <li>O CTA so aparece no ULTIMO story. Nunca no meio da sequencia.</li>
+        <li>Se o story com link tiver menos de 200 visualizacoes, reposte o CTA as 20h-21h.</li>
+        <li>Responda toda DM que vier do link com carinho — cada resposta e um lead.</li>
+      </ul>
+    </div>
+  </div>
 
-  <div class="tips-grid">
-    <div class="tip-card">
-      <div class="tip-number">01</div>
-      <div class="tip-title">Nunca venda fria</div>
-      <div class="tip-text">O link so aparece apos sequencia de valor ou emocao. Nunca no primeiro story do dia.</div>
+  <!-- QUARTA -->
+  <div class="day-detail">
+    <div class="day-detail-header">
+      <div class="day-badge qua">QUA</div>
+      <div>
+        <div class="day-detail-title">Bastidores &mdash; Humanizar</div>
+        <div class="day-detail-subtitle">Objetivo: mostrar a Kelly real, criar proximidade. Sem venda. Postar a qualquer hora.</div>
+      </div>
     </div>
-    <div class="tip-card">
-      <div class="tip-number">02</div>
-      <div class="tip-title">Rotacione os pilares</div>
-      <div class="tip-text">Cada semana, a terca aborda um pilar diferente. Em 6 semanas, cobre todos.</div>
+    <div class="stories-flow">
+      <div class="story-item">
+        <div class="story-icon">1</div>
+        <div class="story-content">
+          <div class="story-label">Rotina / Styling pessoal</div>
+          <div class="story-desc">
+            Kelly mostra como escolheu o look do dia, processo de decisao.
+            <span class="copy">"Hoje eu escolhi esse look porque quero transmitir..."</span>
+            <span class="alt-copy">Alternativa: "Look do dia. Parece simples — mas cada peca foi escolhida com intencao."</span>
+            <span class="alt-copy">Alternativa: "Eu nao visto roupa. Eu visto mensagem."</span>
+            <span class="instrucao">COMO GRAVAR: Espelho de corpo inteiro, boa iluminacao. Mostre o look completo primeiro, depois os detalhes (sapato, acessorio, textura). Fale sobre o "por que" de cada escolha, nao so o "o que". Ex: "Escolhi blazer porque hoje tenho reuniao e quero passar autoridade, mas com suavidade — por isso o tecido e mais fluido." Isso ensina sem parecer aula.</span>
+            <span class="story-format">Video espelho ou walking shot</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">2</div>
+        <div class="story-content">
+          <div class="story-label">Bastidor de consultoria</div>
+          <div class="story-desc">
+            Algo do dia a dia: preparando material, estudando, montando looks pra cliente.
+            <span class="copy">"Esse e o meu dia quando nao estou na frente das cameras. Pesquisando, estudando, montando estrategias de imagem."</span>
+            <span class="instrucao">COMO FAZER: Tire foto da mesa de trabalho, dos tecidos, de um mood board, do computador com paletas de cores. Ou grave video de 10s mostrando o processo. Nao precisa falar — pode ser so foto com texto e musica. Se estiver atendendo cliente, tire foto das maos selecionando pecas (sem mostrar o rosto da cliente).</span>
+            <span class="story-format">Foto ou video curto bastidor</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">3</div>
+        <div class="story-content">
+          <div class="story-label">Momento pessoal</div>
+          <div class="story-desc">
+            Um cafe, um livro, uma paisagem. Algo que mostre a essencia da Kelly sem ser sobre trabalho.
+            <span class="alt-copy">Ideias: cafe da manha bonito, vista de uma janela, livro que esta lendo, detalhe de mao com xicara, passeio com cachorro, prato de restaurante</span>
+            <span class="instrucao">COMO FAZER: Foto estetica — pense "editorial de lifestyle". Adicione musica que combine com o mood. Texto curto opcional ("Pausa."). Esse story mostra que voce e uma mulher completa, nao so uma conta de vendas. Gera conexao profunda.</span>
+            <span class="story-format">Foto estetica + musica + texto curto opcional</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="tip-card">
-      <div class="tip-number">03</div>
-      <div class="tip-title">CTA com variacao</div>
-      <div class="tip-text">Alterne o tom: terca = educativo, quinta = emocional, domingo = inspiracional. Nunca repetitivo.</div>
+    <div class="instrucao-box">
+      <h4>Instrucoes extras — Quarta</h4>
+      <ul>
+        <li>Quarta e o dia mais leve e livre. Nao precisa ter script.</li>
+        <li>E o "descanso estrategico" — o publico precisa sentir que voce e real, nao so conteudo.</li>
+        <li>Pode postar a qualquer hora. Nao se estresse com horario.</li>
+        <li>Se nao tiver nada pra mostrar, pode ate pular. Melhor nao postar do que postar sem vontade.</li>
+        <li>Se uma seguidora responder o bastidor, puxe conversa — quarta e dia de criar relacionamento.</li>
+      </ul>
     </div>
-    <div class="tip-card">
-      <div class="tip-number">04</div>
-      <div class="tip-title">Horarios estrategicos</div>
-      <div class="tip-text">CTAs nos horarios de pico: 11h-13h (almoco) e 20h-22h (noite). Bastidores podem ir a qualquer hora.</div>
+  </div>
+
+  <!-- QUINTA - CTA #2 -->
+  <div class="day-detail">
+    <div class="day-detail-header">
+      <div class="day-badge qui">QUI</div>
+      <div>
+        <div class="day-detail-title">Provocacao &mdash; Confrontar + CTA</div>
+        <div class="day-detail-subtitle">Objetivo: gerar identificacao pela dor e converter. Postar 20h-22h. <span class="cta-badge">CTA #2</span></div>
+      </div>
     </div>
-    <div class="tip-card">
-      <div class="tip-number">05</div>
-      <div class="tip-title">Urgencia elegante</div>
-      <div class="tip-text">Usar "50 vagas" e contagem regressiva, nunca "CORRE" ou "ULTIMA CHANCE". Elegancia ate na urgencia.</div>
+    <div class="stories-flow">
+      <div class="story-item">
+        <div class="story-icon">1</div>
+        <div class="story-content">
+          <div class="story-label">Provocacao de abertura</div>
+          <div class="story-desc">
+            <span class="copy">"Voce tem guarda-roupa cheio... e nao tem nada pra vestir. Ja parou pra pensar por que?"</span>
+            <span class="alt-copy">Alternativa: "Voce fala... e ninguem ouve. Ja pensou que o problema nao e o que voce diz?"</span>
+            <span class="alt-copy">Alternativa: "Voce chega num lugar e senta no canto. Ninguem te apresenta. Ninguem te nota. Voce volta pra casa exausta de ser invisivel."</span>
+            <span class="instrucao">COMO FAZER: Texto bold, fonte grande, fundo PRETO. Sem musica. Sem sticker. Impacto maximo. A provocacao tem que fazer a pessoa sentir um aperto — "isso sou eu". Use ponto final. Frase curta. Nao explique demais.</span>
+            <span class="story-format">Texto bold, fundo escuro, sem musica</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">2</div>
+        <div class="story-content">
+          <div class="story-label">Video confronto elegante (30-40s)</div>
+          <div class="story-desc">
+            Kelly fala direto, mas com empatia:
+            <span class="copy">"Nao e sobre roupa. Nunca foi. E sobre nao saber o que voce quer comunicar quando se veste. Quando voce nao sabe quem voce e... nenhuma roupa resolve."</span>
+            <span class="alt-copy">Alternativa: "Voce nao precisa de mais roupas. Voce precisa de presenca. E presenca nao se compra — se constroi."</span>
+            <span class="instrucao">COMO GRAVAR: Close-up (rosto inteiro, corte nos ombros). Tom firme mas acolhedor — como uma amiga que fala a verdade com amor. Olhe direto na camera. Fale mais devagar que o normal. Pause entre as frases. Pode ter fundo escuro/neutro pra dar peso. Esse video e o coracao da quinta — grave quantas vezes precisar ate sair natural.</span>
+            <span class="story-format">Close-up, tom firme mas acolhedor</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">3</div>
+        <div class="story-content">
+          <div class="story-label">Slider emocional</div>
+          <div class="story-desc">
+            <span class="copy">"O quanto voce se sente vista de verdade?"</span>
+            Slider de emoji (escondida &rarr; brilhando)
+            <span class="alt-copy">Alternativa: "De 0 a 10, quanto sua imagem reflete quem voce realmente e?"</span>
+            <span class="instrucao">COMO FAZER: Fundo neutro (bege claro) > texto da pergunta > sticker de SLIDER (barra deslizante com emoji). Escolha emoji de estrela ou coracao. Esse sticker gera MUITO engajamento porque e rapido de interagir. Salve as respostas — quem desliza pouco e lead quente.</span>
+            <span class="story-format">Sticker slider + fundo neutro</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">4</div>
+        <div class="story-content">
+          <div class="story-label">Reframe emocional</div>
+          <div class="story-desc">
+            <span class="copy">"Existe muito mais dentro de voce do que aquilo que as pessoas conseguem perceber. A sua presenca ainda nao mostra tudo o que voce e. Mas pode mostrar."</span>
+            <span class="alt-copy">Alternativa: "Voce nao precisa mudar quem voce e. Voce precisa aprender a mostrar quem voce ja e."</span>
+            <span class="instrucao">COMO FAZER: Texto poetico, fundo suave (rosa velho, nude, bege). Musica emocional — algo cinematografico, sem letra. Fonte elegante. Esse story e a "virada" — sai da dor e entra na esperanca. E a rampa antes do link.</span>
+            <span class="story-format">Texto poetico, fundo suave, musica emocional</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">5</div>
+        <div class="story-content">
+          <div class="story-label">CTA com link</div>
+          <div class="story-desc">
+            <span class="copy-cta">"O Codigo da Elegancia e o metodo que ativa isso em voce. 6 pilares. Presenca. Imagem. Postura. Etiqueta. Posicionamento. Conexao. Toca no link."</span>
+            Link: codigo-da-elegancia.vercel.app
+            <span class="alt-copy">CTA alternativo: "Eu criei esse metodo pra mulheres que estao cansadas de se sentir invisiveis. Se e voce... o link esta aqui."</span>
+            <span class="alt-copy">CTA alternativo: "50 vagas. Um metodo. 6 pilares que mudam como voce e percebida. Toca no link."</span>
+            <span class="instrucao">COMO FAZER: Fundo wine (vinho escuro). Texto branco. Sticker de LINK centralizado. Seta animada apontando pro link. Pode adicionar sticker de CONTAGEM REGRESSIVA se tiver prazo real. Pode adicionar "50 vagas" escrito com a mao (sticker de texto). NUNCA use "COMPRE AGORA" ou "CORRE" — use "Toca no link", "Conheca", "Comece agora".</span>
+            <span class="story-format">Sticker de link + seta animada + contagem regressiva</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="tip-card">
-      <div class="tip-number">06</div>
-      <div class="tip-title">Salve as respostas</div>
-      <div class="tip-text">Respostas do sabado viram pauta da semana seguinte. Ciclo que se retroalimenta.</div>
+    <div class="instrucao-box">
+      <h4>Instrucoes extras — Quinta (CTA #2)</h4>
+      <ul>
+        <li>Quinta a noite e o segundo melhor horario de conversao — mulheres em casa, refletindo.</li>
+        <li>O tom e diferente da terca: terca ensina, quinta confronta (com carinho). Sao CTAs diferentes.</li>
+        <li>Se puder, poste toda a sequencia entre 20h-22h de uma vez, com 3-5 min de intervalo.</li>
+        <li>Se alguem responder ao slider com nivel baixo, mande DM: "Quer que eu te explique como o metodo pode te ajudar?"</li>
+        <li>Quinta gera as DMs mais quentes da semana — esteja pronta pra responder ate 23h.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SEXTA -->
+  <div class="day-detail">
+    <div class="day-detail-header">
+      <div class="day-badge sex">SEX</div>
+      <div>
+        <div class="day-detail-title">Autoridade &mdash; Valor Puro</div>
+        <div class="day-detail-subtitle">Objetivo: posicionar como especialista. Entrega generosa, sem pedir nada. Postar 11h-14h.</div>
+      </div>
+    </div>
+    <div class="stories-flow">
+      <div class="story-item">
+        <div class="story-icon">1</div>
+        <div class="story-content">
+          <div class="story-label">Mini-aula pratica (45-60s)</div>
+          <div class="story-desc">
+            Ideias rotativas:
+            <span class="copy">"3 pecas que toda mulher deveria ter no guarda-roupa"</span>
+            <span class="alt-copy">"O erro que 90% das mulheres cometem ao se vestir pra uma reuniao"</span>
+            <span class="alt-copy">"Como a postura muda tudo em 5 segundos — vou te mostrar"</span>
+            <span class="alt-copy">"A regra 60/30/10 do guarda-roupa inteligente"</span>
+            <span class="alt-copy">"O que sua entrada num ambiente diz sobre voce"</span>
+            <span class="alt-copy">"Por que voce nao precisa de mais roupas — precisa de estrategia"</span>
+            <span class="instrucao">COMO GRAVAR: Pode ser selfie ou com tripe. Tom didatico — como se estivesse ensinando uma amiga. Use exemplos visuais: segure as pecas, mostre no corpo, aponte. Se for sobre postura, demonstre a diferenca. Maximo 60s. Se passar, divida em 2 stories. Adicione texto resumo com os pontos-chave no story seguinte.</span>
+            <span class="story-format">Video ensinando, 45-60s, ritmo didatico</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">2</div>
+        <div class="story-content">
+          <div class="story-label">Analise visual</div>
+          <div class="story-desc">
+            Kelly analisa um look (de famosa, de rua, proprio): o que funciona, o que nao, por que.
+            <span class="alt-copy">Ideias: "Analise do look da [famosa] — o que ela comunicou com essa escolha" / "Look de rua que vi hoje — o que mudaria" / "Meu look de ontem — por que funcionou"</span>
+            <span class="instrucao">COMO FAZER: Mostre a foto/imagem do look (pode ser screenshot, foto propria ou de revista). Grave um video narrando sua analise por cima da imagem, ou use texto sobre a foto com setas apontando detalhes. Linguagem simples, sem jargao tecnico. Foque no "por que funciona / nao funciona" e nao no "bonito / feio".</span>
+            <span class="story-format">Foto + texto de analise ou video narrando</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">3</div>
+        <div class="story-content">
+          <div class="story-label">Encerramento generoso</div>
+          <div class="story-desc">
+            <span class="copy">"Salva esse story. Aplica amanha. Me conta o resultado."</span>
+            <span class="alt-copy">Alternativa: "Isso e so uma amostra. O metodo vai MUITO mais fundo. Mas por enquanto, aplica isso e me conta."</span>
+            <span class="instrucao">COMO FAZER: Texto simples, fundo claro. Adicione sticker de "salvar" (marcador). Convide a pessoa a salvar e aplicar. Esse story semeia o CTA do domingo sem vender — quem salva e lead qualificado.</span>
+            <span class="story-format">Texto + sticker de salvar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="instrucao-box">
+      <h4>Instrucoes extras — Sexta</h4>
+      <ul>
+        <li>Sexta e DIA DE DAR. Entregue o melhor conteudo da semana sem pedir nada em troca.</li>
+        <li>Conteudo de sexta e o que mais gera SALVAMENTOS e COMPARTILHAMENTOS.</li>
+        <li>Pense: "Se uma mulher so visse esse story, o que eu queria que ela aprendesse?"</li>
+        <li>Mini-aulas de sexta podem virar Reels depois — se um story bombar, transforme em Reel na semana seguinte.</li>
+        <li>Nao coloque link. A generosidade de sexta faz o CTA de domingo converter mais.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SABADO -->
+  <div class="day-detail">
+    <div class="day-detail-header">
+      <div class="day-badge sab">SAB</div>
+      <div>
+        <div class="day-detail-title">Conexao &mdash; Ouvir e Responder</div>
+        <div class="day-detail-subtitle">Objetivo: engajamento, criar comunidade, coletar dores. Postar 10h-11h (caixa) + 16h-18h (respostas).</div>
+      </div>
+    </div>
+    <div class="stories-flow">
+      <div class="story-item">
+        <div class="story-icon">1</div>
+        <div class="story-content">
+          <div class="story-label">Caixa de perguntas (manha)</div>
+          <div class="story-desc">
+            <span class="copy">"Me conta: qual a sua maior dificuldade hoje quando o assunto e imagem e presenca?"</span>
+            <span class="alt-copy">Alternativa: "Me pergunta qualquer coisa sobre imagem, estilo, presenca ou posicionamento."</span>
+            <span class="alt-copy">Alternativa: "Qual situacao voce vive que te faz sentir insegura com sua imagem?"</span>
+            <span class="instrucao">COMO FAZER: Fundo bonito (foto sua de fundo desfocado ou cor solida elegante) > sticker de PERGUNTA (caixa de texto aberta). Poste entre 10h-11h da manha pra coletar respostas ate a tarde. Dica avancada: faça uma pergunta ESPECIFICA, nao generica — perguntas especificas geram respostas melhores.</span>
+            <span class="story-format">Sticker de pergunta</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">2</div>
+        <div class="story-content">
+          <div class="story-label">Respostas em video (tarde)</div>
+          <div class="story-desc">
+            Kelly responde 3-5 perguntas em video, com carinho e profundidade.
+            <span class="instrucao">COMO GRAVAR: Selecione as 3-5 melhores perguntas (as que representam dores mais comuns). Para cada uma: (1) mostre o print da pergunta no story, (2) no story seguinte grave 20-40s de video respondendo. Comece com "Amei essa pergunta..." ou "Essa e uma das dores mais comuns..." Fale olhando na camera, com carinho. Cada resposta vira um micro-conteudo que gera autoridade. DICA: salve as perguntas que sobraram — vao virar conteudo das proximas semanas.</span>
+            <span class="story-format">Video selfie respondendo, 20-40s cada</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">3</div>
+        <div class="story-content">
+          <div class="story-label">Encerramento com enquete/quiz</div>
+          <div class="story-desc">
+            <span class="copy">"Qual pilar voce mais quer que eu aprofunde semana que vem?"</span>
+            Quiz com os 6 pilares (ou 3-4 opcoes).
+            <span class="alt-copy">Alternativa: "Voce quer que semana que vem eu fale de..." — Enquete com 2 opcoes de pilar</span>
+            <span class="instrucao">COMO FAZER: Sticker de QUIZ (opcoes multiplas) ou ENQUETE (2 opcoes). Isso faz a audiencia escolher o tema da proxima semana — elas se sentem parte da construcao. O pilar mais votado vira o tema da terca seguinte. Anote o resultado!</span>
+            <span class="story-format">Sticker quiz ou enquete</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="instrucao-box">
+      <h4>Instrucoes extras — Sabado</h4>
+      <ul>
+        <li>Sabado e o dia de OUVIR. Fale menos, pergunte mais.</li>
+        <li>Poste a caixa de manha (10h) e as respostas de tarde (16h-18h) — dois momentos de engajamento.</li>
+        <li>Toda pergunta recebida e ouro: sao as dores reais do publico, na linguagem delas.</li>
+        <li>Anote as palavras exatas que as seguidoras usam — use essas palavras nas copies da semana seguinte.</li>
+        <li>Se receber poucas perguntas, mude a abordagem: faca um "VOCE SABIA?" em 3 stories e termine com a caixa.</li>
+        <li>DMs que vierem dessas respostas sao leads quentes. Responda rapidamente.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DOMINGO - CTA #3 -->
+  <div class="day-detail">
+    <div class="day-detail-header">
+      <div class="day-badge dom">DOM</div>
+      <div>
+        <div class="day-detail-title">Manifesto &mdash; Emocional + CTA</div>
+        <div class="day-detail-subtitle">Objetivo: fechar a semana no pico emocional e converter. Postar 19h-21h. <span class="cta-badge">CTA #3</span></div>
+      </div>
+    </div>
+    <div class="stories-flow">
+      <div class="story-item">
+        <div class="story-icon">1</div>
+        <div class="story-content">
+          <div class="story-label">Frase-manifesto</div>
+          <div class="story-desc">
+            <span class="copy">"Elegancia e quando voce para de pedir licenca pra existir."</span>
+            <span class="alt-copy">Alternativa: "Voce nao precisa de mais roupas. Voce precisa de presenca."</span>
+            <span class="alt-copy">Alternativa: "Ninguem nos ensina como alinhar presenca, imagem, postura, comportamento, posicionamento e conexao. Ate agora."</span>
+            <span class="alt-copy">Alternativa: "A elegancia verdadeira nao tem nada a ver com perfeicao. Ela tem a ver com consciencia."</span>
+            <span class="instrucao">COMO FAZER: Esse e o story mais "cinematografico" da semana. Fundo escuro ou imagem bonita de fundo (paisagem, arquitetura, luz). Tipografia elegante, grande, centralizada. Musica emocional forte (orquestra, piano, algo que arrepia). Sem sticker. So a frase. Impacto puro.</span>
+            <span class="story-format">Fundo cinematografico, tipografia elegante, musica emocional</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">2</div>
+        <div class="story-content">
+          <div class="story-label">Video reflexao (40-60s)</div>
+          <div class="story-desc">
+            Kelly fala como se fosse uma carta pra seguidora:
+            <span class="copy">"Eu criei esse metodo porque durante anos eu vi mulheres incriveis passando despercebidas. Nao por falta de talento. Por falta de consciencia. E eu decidi mudar isso."</span>
+            <span class="alt-copy">Alternativa: "Sabe o que me move? Saber que existe uma mulher agora, nesse exato momento, que tem tudo dentro dela... mas o mundo ainda nao consegue ver. E pra ela que eu faco o que faco."</span>
+            <span class="instrucao">COMO GRAVAR: Esse e o video mais pessoal e emocional da semana. Luz bonita (golden hour ideal — domingo fim de tarde). Cenario intimista (sofa, varanda, quarto). Fale devagar, com emocao real. Pode fazer pausa, respirar, olhar pra baixo e voltar — isso e autenticidade. Se emocionar e BOM. Nao repita muitas vezes — a primeira gravacao com emocao real e quase sempre a melhor. Vista algo que te represente (nao precisa ser produzida — pode ser casual-elegante).</span>
+            <span class="story-format">Video emocional, luz bonita, tom pausado</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">3</div>
+        <div class="story-content">
+          <div class="story-label">Depoimento ou transformacao</div>
+          <div class="story-desc">
+            Print de mensagem de aluna, antes/depois, ou resultado real.
+            <span class="copy">"Antes eu entrava pedindo licenca. Hoje eu escolho como entro."</span>
+            <span class="alt-copy">Se nao tiver depoimento real: use uma frase de transformacao como se fosse da perspectiva de uma aluna. Marca com "Depoimento de aluna" pra dar credibilidade.</span>
+            <span class="instrucao">COMO FAZER: Se tiver print real — use! Tire screenshot da mensagem, recorte, coloque sobre fundo bonito. Se tiver foto antes/depois — ainda melhor. Se nao tiver nada ainda, use texto estilizado como se fosse um depoimento ficticio baseado nas transformacoes reais que voce ja viu acontecer. Quando conseguir os primeiros depoimentos reais, substitua.</span>
+            <span class="story-format">Print real ou texto estilizado</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-icon">4</div>
+        <div class="story-content">
+          <div class="story-label">CTA final da semana</div>
+          <div class="story-desc">
+            <span class="copy-cta">"Se voce sentiu que essa semana tocou em algo dentro de voce... o metodo vai muito mais fundo. 6 pilares. Uma transformacao real. Toca no link e comeca."</span>
+            Link: codigo-da-elegancia.vercel.app
+            <span class="alt-copy">CTA alternativo: "Essa semana foi so uma amostra. O Codigo da Elegancia e onde tudo se conecta. 50 vagas. O link esta aqui."</span>
+            <span class="alt-copy">CTA alternativo: "Voce merece ser vista. Voce merece ser lembrada. Voce merece ser escolhida. Toca no link."</span>
+            <span class="instrucao">COMO FAZER: Fundo escuro ou wine. Texto branco grande. Sticker de LINK no centro. Seta animada. Adicione "50 vagas" como texto manual. Pode adicionar sticker de "Novo" ou "Exclusivo". Esse e o CTA mais emocional da semana — o tom e de convite, nao de venda. Como uma porta aberta, nao um empurrao. Domingo a noite e quando a mulher para, reflete e toma decisoes sobre a semana que vem.</span>
+            <span class="story-format">Sticker de link grande + seta + "50 vagas"</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="instrucao-box">
+      <h4>Instrucoes extras — Domingo (CTA #3)</h4>
+      <ul>
+        <li>Domingo a noite e o momento de maior reflexao da semana — aproveite isso.</li>
+        <li>Poste entre 19h-21h. Nao muito tarde (depois de 22h cai o engajamento).</li>
+        <li>O tom e INSPIRACIONAL — diferente de terca (educativo) e quinta (emocional/dor).</li>
+        <li>Se a semana teve bom engajamento, o CTA de domingo converte mais — tudo se acumula.</li>
+        <li>Responda DMs de domingo ate segunda de manha — sao leads em modo "decisao".</li>
+        <li>Se perceber que 3 CTAs e muito, pode alternar: semanas com 2 CTAs (terca + quinta) e semanas com 3 (+ domingo). Teste e veja o que funciona melhor.</li>
+      </ul>
     </div>
   </div>
 
 </div>
 
+<!-- ============================== -->
+<!-- SECAO 3: ROTACAO DE PILARES -->
+<!-- ============================== -->
+<div class="container" id="rotacao">
+
+  <div class="section-divider"></div>
+  <div class="section-title">Rotacao de Pilares — 6 Semanas</div>
+  <div class="section-sub">Cada terca aborda um pilar diferente. Em 6 semanas, cobre todo o metodo. Depois reinicia com angulos novos.</div>
+
+  <table class="rotation-table">
+    <thead>
+      <tr>
+        <th>Semana</th>
+        <th>Pilar da Terca</th>
+        <th>Provocacao da Quinta</th>
+        <th>Manifesto do Domingo</th>
+        <th>Mini-aula da Sexta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Semana 1</strong></td>
+        <td><span class="pilar-tag p1">Presenca</span></td>
+        <td>"Voce entra num lugar e ninguem percebe?"</td>
+        <td>"Elegancia e parar de pedir licenca pra existir."</td>
+        <td>Entrada insegura vs. consciente (demonstracao)</td>
+      </tr>
+      <tr>
+        <td><strong>Semana 2</strong></td>
+        <td><span class="pilar-tag p2">Imagem</span></td>
+        <td>"Guarda-roupa cheio e nada pra vestir?"</td>
+        <td>"Voce nao precisa de mais roupas. Precisa de presenca."</td>
+        <td>Regra 60/30/10 do guarda-roupa</td>
+      </tr>
+      <tr>
+        <td><strong>Semana 3</strong></td>
+        <td><span class="pilar-tag p3">Postura</span></td>
+        <td>"Uma mudanca no corpo muda como te tratam."</td>
+        <td>"Postura e a estrutura invisivel da sua imagem."</td>
+        <td>Como sentar com consciencia (4 sabotagens)</td>
+      </tr>
+      <tr>
+        <td><strong>Semana 4</strong></td>
+        <td><span class="pilar-tag p4">Etiqueta</span></td>
+        <td>"Etiqueta nao e frescura. E inteligencia social."</td>
+        <td>"Quando voce sabe se comportar, gera conforto."</td>
+        <td>3 erros de etiqueta que ninguem te conta</td>
+      </tr>
+      <tr>
+        <td><strong>Semana 5</strong></td>
+        <td><span class="pilar-tag p5">Posicionamento</span></td>
+        <td>"Voce diz sim quando quer dizer nao?"</td>
+        <td>"Autoridade feminina nao e dureza. E estabilidade."</td>
+        <td>Linguagem que te diminui (exemplos reais)</td>
+      </tr>
+      <tr>
+        <td><strong>Semana 6</strong></td>
+        <td><span class="pilar-tag p6">Conexao</span></td>
+        <td>"Toda conversa volta pra voce? Isso e necessidade."</td>
+        <td>"Presenca abre portas. Conexao faz quererem que voce volte."</td>
+        <td>2 perguntas antes de falar de si (exercicio)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="instrucao-box">
+    <h4>Como usar a rotacao</h4>
+    <ul>
+      <li>Siga a ordem: Presenca > Imagem > Postura > Etiqueta > Posicionamento > Conexao.</li>
+      <li>Depois da semana 6, reinicie com ANGULOS NOVOS (mesmos pilares, exemplos diferentes).</li>
+      <li>Se o sabado anterior mostrou que o publico quer outro pilar, pode trocar a ordem.</li>
+      <li>A provocacao de quinta SEMPRE conecta com o pilar da terca (mesma dor, angulo diferente).</li>
+      <li>O manifesto de domingo e uma frase-sintese do pilar da semana — fecha o ciclo.</li>
+      <li>A mini-aula de sexta e pratica/aplicavel do mesmo pilar — e a entrega de valor concreto.</li>
+      <li>Depois de 2-3 ciclos, voce tera um BANCO de conteudo enorme pra reaproveitar em Reels.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ============================== -->
+<!-- SECAO 4: COMO GRAVAR -->
+<!-- ============================== -->
+<div class="container" id="gravacao">
+
+  <div class="section-divider"></div>
+  <div class="section-title">Guia de Gravacao</div>
+  <div class="section-sub">Instrucoes praticas de como filmar, iluminar e editar cada tipo de story.</div>
+
+  <div class="checklist-grid">
+    <div class="checklist-card">
+      <h4>Setup Basico</h4>
+      <ul>
+        <li>Celular na altura dos olhos (nunca de baixo pra cima)</li>
+        <li>Luz natural de frente — fique perto de uma janela</li>
+        <li>Cenario limpo — parede neutra, planta, livros</li>
+        <li>Sem filtros pesados — pode usar ajuste suave de luz</li>
+        <li>Modo aviao ligado (sem notificacoes aparecendo)</li>
+        <li>Limpe a camera do celular antes de gravar</li>
+      </ul>
+    </div>
+    <div class="checklist-card">
+      <h4>Video Selfie (Stories falados)</h4>
+      <ul>
+        <li>Segure o celular com o braco levemente esticado</li>
+        <li>Corte na altura do peito (nao muito perto do rosto)</li>
+        <li>Olhe DIRETO na camera (nao pra sua imagem na tela)</li>
+        <li>Fale devagar — mais devagar do que parece natural</li>
+        <li>Pause entre frases (a pausa cria peso)</li>
+        <li>Grave 2-3 vezes e escolha a mais natural</li>
+        <li>Maximo 30-60 segundos por story</li>
+      </ul>
+    </div>
+    <div class="checklist-card">
+      <h4>Video com Tripe</h4>
+      <ul>
+        <li>Use pra encenacoes (antes vs. depois) e mini-aulas</li>
+        <li>Enquadramento: corpo inteiro ou cintura pra cima</li>
+        <li>Tripe a 1,5m de distancia, altura dos olhos</li>
+        <li>Cenario mais "limpo" possivel atras de voce</li>
+        <li>Se nao tiver tripe: apoie o celular em livros empilhados</li>
+        <li>Use timer de 3 segundos pra se posicionar</li>
+      </ul>
+    </div>
+    <div class="checklist-card">
+      <h4>Stories de Texto</h4>
+      <ul>
+        <li>Fundos escuros pra frases de impacto/provocacao</li>
+        <li>Fundos claros pra perguntas e interacao</li>
+        <li>Fundos dourados/wine pra CTAs com link</li>
+        <li>Fonte serif pra elegancia, sans-serif pra didatico</li>
+        <li>Maximo 3 linhas de texto por story</li>
+        <li>Centralizar tudo. Espacamento generoso</li>
+        <li>Uma ideia por story — nunca acumule mensagens</li>
+      </ul>
+    </div>
+    <div class="checklist-card">
+      <h4>Musica</h4>
+      <ul>
+        <li>Aquecimento (seg): instrumental suave, piano</li>
+        <li>Autoridade (ter): sem musica ou batida leve</li>
+        <li>Bastidores (qua): musica leve, pop elegante</li>
+        <li>Provocacao (qui): silencio nos primeiros, emocional no reframe</li>
+        <li>Valor (sex): musica didatica leve ou sem musica</li>
+        <li>Conexao (sab): musica alegre/acolhedora</li>
+        <li>Manifesto (dom): orquestra, piano emocional, cinematografico</li>
+      </ul>
+    </div>
+    <div class="checklist-card">
+      <h4>O Que Vestir</h4>
+      <ul>
+        <li>Pilar Presenca: look poderoso (blazer, alfaiataria)</li>
+        <li>Pilar Imagem: look estrategico (mostrar intencao)</li>
+        <li>Pilar Postura: look que mostre o corpo (sem distracao)</li>
+        <li>Pilar Etiqueta: look sofisticado, classico</li>
+        <li>Pilar Posicionamento: look de autoridade (cores fortes)</li>
+        <li>Pilar Conexao: look acessivel, casual-elegante</li>
+        <li>Bastidores: look real do dia (autenticidade)</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================== -->
+<!-- SECAO 5: GUIA DE STICKERS -->
+<!-- ============================== -->
+<div class="container" id="stickers">
+
+  <div class="section-divider"></div>
+  <div class="section-title">Guia de Stickers do Instagram</div>
+  <div class="section-sub">Quando usar cada sticker e em qual dia da semana.</div>
+
+  <div class="sticker-grid">
+    <div class="sticker-card">
+      <div class="sticker-emoji">&#x1F517;</div>
+      <div class="sticker-name">Sticker de Link</div>
+      <div class="sticker-when">QUANDO: Terca, Quinta e Domingo (dias de CTA). Posicione no centro da tela. Sempre com seta animada apontando pro link.</div>
+    </div>
+    <div class="sticker-card">
+      <div class="sticker-emoji">&#x1F4CA;</div>
+      <div class="sticker-name">Enquete (2 opcoes)</div>
+      <div class="sticker-when">QUANDO: Segunda (aquecimento) e Sabado (escolha de pilar). Use pra perguntas com resposta binaria. Gera engajamento rapido.</div>
+    </div>
+    <div class="sticker-card">
+      <div class="sticker-emoji">&#x2753;</div>
+      <div class="sticker-name">Caixa de Perguntas</div>
+      <div class="sticker-when">QUANDO: Sabado (dia de conexao). Perguntas abertas. Coleta dores reais na linguagem do publico. Ouro para copy.</div>
+    </div>
+    <div class="sticker-card">
+      <div class="sticker-emoji">&#x2B50;</div>
+      <div class="sticker-name">Slider (barra deslizante)</div>
+      <div class="sticker-when">QUANDO: Quinta (provocacao). "O quanto voce se sente vista?" Gera muito engajamento. Quem desliza pouco = lead quente.</div>
+    </div>
+    <div class="sticker-card">
+      <div class="sticker-emoji">&#x1F4DD;</div>
+      <div class="sticker-name">Quiz (multipla escolha)</div>
+      <div class="sticker-when">QUANDO: Sabado (votacao de pilar) e Sexta (mini-quiz educativo). Ate 4 opcoes. Divertido e informativo.</div>
+    </div>
+    <div class="sticker-card">
+      <div class="sticker-emoji">&#x23F3;</div>
+      <div class="sticker-name">Contagem Regressiva</div>
+      <div class="sticker-when">QUANDO: Nos CTAs se tiver PRAZO REAL (fim de vagas, encerramento de turma). Nunca use sem prazo real — falsa urgencia quebra confianca.</div>
+    </div>
+    <div class="sticker-card">
+      <div class="sticker-emoji">&#x1F516;</div>
+      <div class="sticker-name">Salvar (marcador)</div>
+      <div class="sticker-when">QUANDO: Sexta (mini-aula) e toda vez que entregar conteudo de valor. "Salva esse story." Salvamento = indicador de relevancia pro algoritmo.</div>
+    </div>
+    <div class="sticker-card">
+      <div class="sticker-emoji">&#x1F3B5;</div>
+      <div class="sticker-name">Musica</div>
+      <div class="sticker-when">QUANDO: Stories de texto e foto. Nunca sobre video falado (atrapalha o audio). Combine o mood da musica com o tom do dia.</div>
+    </div>
+    <div class="sticker-card">
+      <div class="sticker-emoji">&#x2197;&#xFE0F;</div>
+      <div class="sticker-name">GIF de Seta</div>
+      <div class="sticker-when">QUANDO: Junto com sticker de link nos CTAs. Pesquise "arrow" ou "seta" nos GIFs. Escolha uma animada e elegante (nao infantil).</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================== -->
+<!-- SECAO 6: HORARIOS -->
+<!-- ============================== -->
+<div class="container" id="horarios">
+
+  <div class="section-divider"></div>
+  <div class="section-title">Horarios Estrategicos</div>
+  <div class="section-sub">Quando postar cada tipo de conteudo para maximizar visualizacao e conversao.</div>
+
+  <table class="schedule-table">
+    <thead>
+      <tr>
+        <th>Dia</th>
+        <th>Horario Ideal</th>
+        <th>Pico de Engajamento</th>
+        <th>Tipo de Conteudo</th>
+        <th>Repost CTA?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Segunda</strong></td>
+        <td class="hour">10h-12h</td>
+        <td>Manha (inicio de semana)</td>
+        <td>Aquecimento leve</td>
+        <td>Nao</td>
+      </tr>
+      <tr class="best">
+        <td><strong>Terca</strong></td>
+        <td class="hour">11h-13h</td>
+        <td>Almoco (scrolling no celular)</td>
+        <td>Pilar + CTA #1</td>
+        <td>Sim, as 20h se < 200 views</td>
+      </tr>
+      <tr>
+        <td><strong>Quarta</strong></td>
+        <td class="hour">Qualquer hora</td>
+        <td>Nao e prioridade</td>
+        <td>Bastidores</td>
+        <td>Nao</td>
+      </tr>
+      <tr class="best">
+        <td><strong>Quinta</strong></td>
+        <td class="hour">20h-22h</td>
+        <td>Noite (reflexao em casa)</td>
+        <td>Provocacao + CTA #2</td>
+        <td>Nao (ja e noite)</td>
+      </tr>
+      <tr>
+        <td><strong>Sexta</strong></td>
+        <td class="hour">11h-14h</td>
+        <td>Pre-fim de semana</td>
+        <td>Mini-aula de valor</td>
+        <td>Nao</td>
+      </tr>
+      <tr>
+        <td><strong>Sabado</strong></td>
+        <td class="hour">10h + 16h</td>
+        <td>Manha (caixa) + tarde (respostas)</td>
+        <td>Perguntas + respostas</td>
+        <td>Nao</td>
+      </tr>
+      <tr class="best">
+        <td><strong>Domingo</strong></td>
+        <td class="hour">19h-21h</td>
+        <td>Noite (planejamento da semana)</td>
+        <td>Manifesto + CTA #3</td>
+        <td>Nao</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="instrucao-box">
+    <h4>Regras de horario</h4>
+    <ul>
+      <li>CTAs sempre nos horarios de pico (marcados em destaque).</li>
+      <li>Se um CTA teve menos de 200 views, reposte o story do link 4-5h depois.</li>
+      <li>Bastidores e conteudo leve podem ir a qualquer hora — nao se estresse.</li>
+      <li>Sequencias de stories (terca, quinta, domingo): poste todos com 3-5 min de intervalo, nao tudo de uma vez.</li>
+      <li>Verifique seus proprios insights do Instagram pra confirmar os melhores horarios da SUA audiencia.</li>
+      <li>Esses horarios sao para o publico feminino brasileiro padrao — ajuste conforme seus dados.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ============================== -->
+<!-- SECAO 7: BANCO DE COPIES -->
+<!-- ============================== -->
+<div class="container" id="copies">
+
+  <div class="section-divider"></div>
+  <div class="section-title">Banco de Copies Prontas</div>
+  <div class="section-sub">Copies extras para variar semana a semana. Organize por tipo e rotacione.</div>
+
+  <div class="copy-bank">
+    <div class="copy-card">
+      <div class="copy-cat">Gancho de abertura</div>
+      <div class="copy-text">"Quantas mulheres voce conhece que sao incriveis... mas que ninguem percebe?"</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Gancho de abertura</div>
+      <div class="copy-text">"Voce ja saiu de uma reuniao sabendo que tinha a melhor ideia... mas ninguem ouviu?"</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Gancho de abertura</div>
+      <div class="copy-text">"A forma como voce cruza os bracos, a velocidade com que voce fala, o jeito que voce entra — tudo isso comunica. Tudo."</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Gancho de abertura</div>
+      <div class="copy-text">"Voce ja percebeu que algumas mulheres entram num lugar e todo mundo para? Isso nao e sorte. E codigo."</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Provocacao</div>
+      <div class="copy-text">"Voce diz que quer ser respeitada. Mas ri quando ultrapassam seus limites. Isso nao e simpatia. E falta de posicionamento."</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Provocacao</div>
+      <div class="copy-text">"Voce fala 'desculpa' antes de dar sua opiniao? Ja pensou o que isso comunica?"</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Provocacao</div>
+      <div class="copy-text">"Voce troca de roupa 5 vezes antes de sair. O problema nao e o guarda-roupa. E que voce nao sabe o que quer dizer."</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Provocacao</div>
+      <div class="copy-text">"Voce e boa no que faz. Mas quando chega a hora de falar sobre isso... voce se encolhe. Por que?"</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Reframe (virada emocional)</div>
+      <div class="copy-text">"Voce nao precisa mudar quem voce e. Voce precisa aprender a mostrar quem voce ja e."</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Reframe (virada emocional)</div>
+      <div class="copy-text">"Tudo o que voce precisa ja esta dentro de voce. Falta so o codigo pra ativar."</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Reframe (virada emocional)</div>
+      <div class="copy-text">"A mulher que voce quer ser... ja existe. Ela so precisa de permissao pra aparecer."</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Reframe (virada emocional)</div>
+      <div class="copy-text">"Nao e sobre parecer outra pessoa. E sobre finalmente parecer voce."</div>
+    </div>
+    <div class="copy-card cta-card">
+      <div class="copy-cat">CTA (link do metodo)</div>
+      <div class="copy-text">"O Codigo da Elegancia. 6 pilares. Uma transformacao. Toca no link."</div>
+    </div>
+    <div class="copy-card cta-card">
+      <div class="copy-cat">CTA (link do metodo)</div>
+      <div class="copy-text">"Eu criei esse metodo pra mulheres que estao cansadas de se sentir invisiveis. Se e voce, o link esta aqui."</div>
+    </div>
+    <div class="copy-card cta-card">
+      <div class="copy-cat">CTA (link do metodo)</div>
+      <div class="copy-text">"Presenca. Imagem. Postura. Etiqueta. Posicionamento. Conexao. 6 pilares que mudam como voce e percebida. Toca no link."</div>
+    </div>
+    <div class="copy-card cta-card">
+      <div class="copy-cat">CTA (link do metodo)</div>
+      <div class="copy-text">"50 vagas. Um metodo. A transformacao que voce esta buscando. Link aqui."</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Manifesto (domingo)</div>
+      <div class="copy-text">"Elegancia nao e sobre ser perfeita. E sobre ser intencional."</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Manifesto (domingo)</div>
+      <div class="copy-text">"Voce nao ocupa um espaco por acaso. Voce escolhe como ocupa."</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Manifesto (domingo)</div>
+      <div class="copy-text">"A elegancia verdadeira nao tem nada a ver com perfeicao. Ela tem a ver com consciencia."</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-cat">Manifesto (domingo)</div>
+      <div class="copy-text">"Quando sua imagem se alinha com quem voce e... voce deixa de se adaptar ao ambiente. E comeca a influencia-lo."</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================== -->
+<!-- SECAO 8: CHECKLIST DIARIO -->
+<!-- ============================== -->
+<div class="container" id="checklist">
+
+  <div class="section-divider"></div>
+  <div class="section-title">Checklist Diario</div>
+  <div class="section-sub">Use antes de postar cada dia. Imprima ou salve no celular.</div>
+
+  <div class="checklist-grid">
+    <div class="checklist-card">
+      <h4>Antes de Gravar</h4>
+      <ul>
+        <li>Sei qual e o tema/pilar do dia?</li>
+        <li>Li as copies sugeridas e escolhi ou adaptei?</li>
+        <li>Sei quantos stories vou postar?</li>
+        <li>Meu cenario esta limpo e iluminado?</li>
+        <li>Estou vestida de acordo com o tema?</li>
+        <li>Celular no modo aviao?</li>
+        <li>Camera limpa?</li>
+      </ul>
+    </div>
+    <div class="checklist-card">
+      <h4>Antes de Publicar</h4>
+      <ul>
+        <li>A sequencia faz sentido? (gancho > valor > CTA)</li>
+        <li>O texto esta legivel? (nao pequeno demais)</li>
+        <li>Coloquei musica nos stories de texto/foto?</li>
+        <li>Os stickers estao corretos? (enquete, link, etc.)</li>
+        <li>O link do metodo esta funcionando?</li>
+        <li>Estou no horario ideal pro dia?</li>
+        <li>Revisi o video — audio ok, luz ok, fala clara?</li>
+      </ul>
+    </div>
+    <div class="checklist-card">
+      <h4>Depois de Publicar</h4>
+      <ul>
+        <li>Testei o link (cliquei pra ver se abre)?</li>
+        <li>Vou ficar online 1-2h pra responder DMs?</li>
+        <li>Vou verificar respostas de enquete/slider?</li>
+        <li>Se CTA teve < 200 views, vou repostar?</li>
+        <li>Anotei insights (o que funcionou, o que nao)?</li>
+      </ul>
+    </div>
+    <div class="checklist-card">
+      <h4>Fim da Semana (Domingo a noite)</h4>
+      <ul>
+        <li>Qual story teve mais views?</li>
+        <li>Qual CTA converteu mais cliques?</li>
+        <li>Quantas DMs recebi essa semana?</li>
+        <li>Quais perguntas do sabado foram melhores?</li>
+        <li>Qual pilar da proxima semana (rotacao)?</li>
+        <li>Tenho copies prontas pra semana que vem?</li>
+        <li>Preciso gravar algo com antecedencia?</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================== -->
+<!-- SECAO 9: REGRAS DE OURO -->
+<!-- ============================== -->
+<div class="container" id="regras">
+
+  <div class="section-divider"></div>
+  <div class="section-title">Regras de Ouro</div>
+  <div class="section-sub">10 principios que mantem a elegancia e a conversao.</div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-number">01</div>
+      <div class="tip-title">Nunca venda fria</div>
+      <div class="tip-text">O link so aparece apos sequencia de valor ou emocao. Nunca no primeiro story do dia. A "ladeirinha" e obrigatoria.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">02</div>
+      <div class="tip-title">Rotacione os pilares</div>
+      <div class="tip-text">Cada semana, a terca aborda um pilar diferente. Em 6 semanas, cobre todos. Depois reinicia com angulos novos.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">03</div>
+      <div class="tip-title">3 tons de CTA</div>
+      <div class="tip-text">Terca = educativo ("aprenda os 6 pilares"). Quinta = emocional ("pare de ser invisivel"). Domingo = inspiracional ("voce merece ser vista"). Nunca repetitivo.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">04</div>
+      <div class="tip-title">Horarios de pico</div>
+      <div class="tip-text">CTAs: 11h-13h (terca), 20h-22h (quinta), 19h-21h (domingo). Bastidores podem ir a qualquer hora.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">05</div>
+      <div class="tip-title">Urgencia elegante</div>
+      <div class="tip-text">"50 vagas" e contagem regressiva sim. "CORRE", "ULTIMA CHANCE", "NAO PERCA" nunca. Elegancia ate na urgencia.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">06</div>
+      <div class="tip-title">Sabado alimenta tudo</div>
+      <div class="tip-text">Respostas do sabado viram pauta da semana seguinte. Palavras das seguidoras viram copy. Ciclo que se retroalimenta.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">07</div>
+      <div class="tip-title">Menos e mais</div>
+      <div class="tip-text">4-6 stories por dia e o ideal. Mais de 8 cansa. Se nao tiver conteudo bom, nao poste. Qualidade > quantidade.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">08</div>
+      <div class="tip-title">Responda tudo</div>
+      <div class="tip-text">Toda resposta de enquete, slider, caixa e DM e um lead. Responda rapido, com carinho. Quem responde stories vende mais.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">09</div>
+      <div class="tip-title">Nunca chame de "curso"</div>
+      <div class="tip-text">E um METODO. Sempre. "Curso" posiciona como commodity. "Metodo" posiciona como exclusivo e proprietario.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-number">10</div>
+      <div class="tip-title">Consistencia > Perfeicao</div>
+      <div class="tip-text">Melhor postar 5 dias com stories simples do que 1 dia com producao cinematografica. O algoritmo e a audiencia premiam consistencia.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
 <div class="footer">
-  Cronograma Stories &mdash; Kelly Lemos &bull; Codigo da Elegancia<br>
-  Estrategia desenvolvida por <a href="#">Patrick Suyti</a> &bull; 2026
+  Cronograma de Stories &mdash; Kelly Lemos &bull; Codigo da Elegancia<br>
+  Estrategia desenvolvida por <a href="#">Patrick Suyti</a> &bull; 2026<br><br>
+  <span style="opacity: 0.6;">Link do metodo: codigo-da-elegancia.vercel.app</span>
 </div>
 
 </body>
